@@ -9,7 +9,14 @@ require "open-uri"
 require "nokogiri"
 
 #Create one user
-User.new(email:"nolan.vandamme@gmail.com", password:"1234567")
+user = User.new(
+  first_name: "JB",
+  last_name: "Taffin",
+  company: "akagreen",
+  email:"nolan.vandamme@gmail.com",
+  password:"1234567"
+)
+user.save
 
 #Create plants - basé sur https://www.conservation-nature.fr/types/arbuste/
 
@@ -54,8 +61,8 @@ end
 
 #Create plant instances
 # famille, espèces, description, location
-until n==20 do
-  Plant.create(family:array_title[n], species:array_family[n], site_name:, description:array_description[n], user_id: 1)
+until n == 20 do
+  Plant.create(family:array_title[n], species:array_family[n], site_name:"le wagon", description:array_description[n], user_id: 1)
 end
 
 
