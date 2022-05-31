@@ -5,6 +5,8 @@ class CreateAlertSettings < ActiveRecord::Migration[7.0]
       t.references :sensor, null: false, foreign_key: { to_table: :devices }
       t.float :temperature_min
       t.float :temperature_max
+      t.float :air_rh_min
+      t.float :air_rh_max
       t.integer :tank_level_min
       t.float :ground_rh_min
       t.float :ground_rh_max
