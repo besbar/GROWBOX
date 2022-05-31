@@ -52,11 +52,10 @@ array_url.each do |url|
   array_description << html_doc_plant.search(".bloc_centre p").text
 end
 
-#Create plant instances
-# famille, espèces, description, location
-until n==20 do
-  Plant.create(family:array_title[n], species:array_family[n], site_name:, description:array_description[n], user_id: 1)
+#Create plant instances - famille, espèces, description, location
+n = 1
+until n == 20
+  site_name = ["Le Wagon", "Jardins de Versailles", "Jardin des Plantes", "Jardin du Luxembourg"].sample
+  Plant.create(family: array_title[n], species: array_family[n], site_name: site_name, description: array_description[n], user_id: 1)
+  n += 1
 end
-
-
-# Create
