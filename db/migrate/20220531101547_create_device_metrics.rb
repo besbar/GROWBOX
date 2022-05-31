@@ -8,7 +8,7 @@ class CreateDeviceMetrics < ActiveRecord::Migration[7.0]
       t.float :luminosity
       t.integer :tank_level
       t.float :volume
-      t.boolean :status
+      t.boolean :status, default: false
 
       t.timestamps
     end
