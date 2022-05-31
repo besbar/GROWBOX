@@ -3,13 +3,13 @@ class CreateDevices < ActiveRecord::Migration[7.0]
     create_table :devices do |t|
       t.string :name
       t.string :category
-      t.boolean :status
-      t.boolean :temperature
-      t.boolean :air_rh
-      t.boolean :ground_rh
-      t.boolean :luminosity
-      t.boolean :volume
-      t.boolean :tank_level
+      t.boolean :status, default: false
+      t.boolean :temperature, default: false
+      t.boolean :air_rh, default: false
+      t.boolean :ground_rh, default: false
+      t.boolean :luminosity, default: false
+      t.boolean :volume, default: false
+      t.boolean :tank_level, default: false
 
       t.timestamps
     end
