@@ -6,4 +6,5 @@ class Device < ApplicationRecord
 
   validates :name, presence: true
   validates :category, inclusion: { in: %w[capteur actionneur caméra] }
+  validates :subcategory, inclusion: { in: ["environnement", "humidité sol", "débitmètre", "luminosité", "réservoir", "arrosage", "caméra"] }
 end

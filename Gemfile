@@ -27,6 +27,8 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# gem 'activerecord-import', '~> 0.15.0'
+
 gem "cloudinary"
 
 # Use Redis adapter to run Action Cable in production
