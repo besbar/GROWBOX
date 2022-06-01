@@ -1,0 +1,17 @@
+<%= simple_form_for(alert_setting) do |t| %>
+<%= t.input :description %>
+<%= t.input :temperature_min %>
+<%= t.input :temperature_max %>
+<%= t.input :air_rh_min %>
+<%= t.input :air_rh_max %>
+<%= t.input :tank_level_min %>
+<%= t.input :ground_rh_min %>
+<%= t.input :ground_rh_max %>
+<%= t.input :luminosity_min %>
+<%= t.input :luminosity_max %>
+<% if alert_setting.persisted?  %>
+  <%= t.submit "Mettre à jour mon alerte" %>
+<% else %>
+  <%= t.submit "Sauver mon alerte" %>
+<% end %>
+<% end %>
