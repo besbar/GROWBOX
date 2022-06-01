@@ -1,1 +1,7 @@
 <h1>Plants</h1>
+
+<% @plants.each do |plant| %>
+<%= plant.description %>
+<% end %>
+
+<%= link_to "Ajouter une plante", new_plant_path%>
