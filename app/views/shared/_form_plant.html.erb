@@ -1,0 +1,11 @@
+<%= simple_form_for(plant) do |t| %>
+<%= t.input :family %>
+<%= t.input :species %>
+<%= t.input :site_name %>
+<%= t.input :description %>
+<% if plant.persisted?  %>
+  <%= t.submit "Mettre à jour ma plante" %>
+<% else %>
+  <%= t.submit "Sauver ma nouvelle plante" %>
+<% end %>
+<% end %>
