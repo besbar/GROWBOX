@@ -45,6 +45,14 @@ array_family = array_building(html_doc, "#bloc_especes .plante_famille")
 array_image = get_image(html_doc, "#bloc_especes .vignette-haut")
 array_url = change_url(array_building(html_doc, "#bloc_especes .nom_latin"))
 
+image_number = 0
+array_image.each do |image|
+  File.open("image#{image_number}.png", 'wb') do |fo|
+    fo.write open(image).read
+  end
+  image_number += 1
+end
+
 array_description = []
 array_url.each do |url|
   html_file_plant = URI.open(url).read
@@ -53,9 +61,9 @@ array_url.each do |url|
 end
 
 #Create plant instances - famille, espèces, description, location
-n = 1
-until n == 20
-  site_name = ["Le Wagon", "Jardins de Versailles", "Jardin des Plantes", "Jardin du Luxembourg"].sample
-  Plant.create(family: array_title[n], species: array_family[n], site_name: site_name, description: array_description[n], user_id: 1)
-  n += 1
-end
+# n = 1
+# until n == 20
+#   site_name = ["Le Wagon", "Jardins de Versailles", "Jardin des Plantes", "Jardin du Luxembourg"].sample
+#   Plant.create(family: array_title[n], species: array_family[n], site_name: site_name, description: array_description[n], user_id: 1)
+#   n += 1
+# end
