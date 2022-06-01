@@ -434,32 +434,3 @@ hash_data_device.each do |filepath, device|
   import_csv_data(filepath, device)
 end
 puts "data created"
-
-
-## GEM Import activerecord-import
-
-# BULK_SIZE = 50
-
-# metrics = []
-# CSV.foreach("db/data/data_1_1.csv", :headers => true, :encoding => 'ISO-8859-1') do
-#   metric = DeviceMetric.new(
-#     device: device_1,
-#     temperature: row['temperature'],
-#     air_rh: row['air_rh'],
-#     ground_rh: row['ground_rh'],
-#     luminosity: row['luminosity'],
-#     tank_level: row['tank_level'],
-#     volume: row['volume']
-#   )
-
-#   metrics << metric
-
-#   if metrics.size >= BULK_SIZE
-#     DeviceMetric.import metrics
-#     metrics = []
-#   end
-# end
-
-# if metrics.size > 0
-#   DeviceMetric.import metrics
-# end
