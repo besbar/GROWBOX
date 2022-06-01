@@ -7,71 +7,31 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "nokogiri"
+require 'csv'
+
+DeviceMetric.destroy_all
+Device.destroy_all
+Plant.destroy_all
+User.destroy_all
 
 #Create one user
 user = User.new(
-  first_name: "JB",
-  last_name: "Taffin",
+  first_name: "nolan",
+  last_name: "vandamme",
   company: "akagreen",
   email:"nolan.vandamme@gmail.com",
   password:"1234567"
 )
 user.save
+puts "users created"
 
-#Create plants - basé sur https://www.conservation-nature.fr/types/arbuste/
-
-#Get content
-html_file = File.open("db/seeds/plantes.html")
-html_doc = Nokogiri::HTML(html_file)
-
-#Define methods to extract text, images and url
-def array_building(html, search_content)
-  array = []
-  html.search(search_content).each do |element|
-    array << element.text
-  end
-  array = array[22...42]
-end
-
-def change_url(array)
-  array.map! do |url|
-    "https://www.conservation-nature.fr/plante/#{url.downcase.gsub(' ', '-')}"
-  end
-end
-
-def get_image(html, search_content)
-  array = []
-  html.search(search_content).each do |image|
-  array << image.attribute("data-bg").value
-  end
-  array = array[22...42]
-end
-
-array_title = array_building(html_doc, "#bloc_especes .nom_francais")
-array_family = array_building(html_doc, "#bloc_especes .plante_famille")
-array_image = get_image(html_doc, "#bloc_especes .vignette-haut")
-array_url = change_url(array_building(html_doc, "#bloc_especes .nom_latin"))
-
-array_description = []
-array_url.each do |url|
-  html_file_plant = URI.open(url).read
-  html_doc_plant = Nokogiri::HTML(html_file_plant)
-  array_description << html_doc_plant.search(".bloc_centre p").text
-end
-
-#Create plant instances
-# famille, espèces, description, location
-for n in 1..19 do
-  Plant.create(family:array_title[n], species:array_family[n], site_name:"le wagon", description:array_description[n], user_id: 1)
-end
-
-csv_1_1 = File.read(Rails.root.join('db', 'data_1_1.csv'))
-
-BULK_SIZE = 500
+# Seed of devices
+# 22 devices ow some are false (currently not used/active)
 
 device_1 = Device.create!(
-  name: "Environment #1",
+  name: "environnement #1",
   category: "capteur",
+  subcategory: "environnement",
   status: true,
   temperature: true,
   air_rh: true,
@@ -82,8 +42,9 @@ device_1 = Device.create!(
 )
 
 device_2 = Device.create!(
-  name: "Soil Humidity #1",
+  name: "humidité sol #1",
   category: "capteur",
+  subcategory: "humidité sol",
   status: true,
   temperature: false,
   air_rh: false,
@@ -94,8 +55,9 @@ device_2 = Device.create!(
 )
 
 device_3 = Device.create!(
-  name: "Tank Level #1",
+  name: "réservoir #1",
   category: "capteur",
+  subcategory: "réservoir",
   status: true,
   temperature: false,
   air_rh: false,
@@ -106,8 +68,9 @@ device_3 = Device.create!(
 )
 
 device_4 = Device.create!(
-  name: "Débitmètre #1",
+  name: "débitmètre #1",
   category: "capteur",
+  subcategory: "débitmètre",
   status: true,
   temperature: false,
   air_rh: false,
@@ -118,8 +81,9 @@ device_4 = Device.create!(
 )
 
 device_5 = Device.create!(
-  name: "Luminance #1",
+  name: "luminosité #1",
   category: "capteur",
+  subcategory: "luminosité",
   status: true,
   temperature: false,
   air_rh: false,
@@ -130,8 +94,9 @@ device_5 = Device.create!(
 )
 
 device_6 = Device.create!(
-  name: "Environment #2",
+  name: "environnement #2",
   category: "capteur",
+  subcategory: "environnement",
   status: true,
   temperature: true,
   air_rh: true,
@@ -142,8 +107,9 @@ device_6 = Device.create!(
 )
 
 device_7 = Device.create!(
-  name: "Soil Humidity #2",
+  name: "humidité sol #2",
   category: "capteur",
+  subcategory: "humidité sol",
   status: true,
   temperature: false,
   air_rh: false,
@@ -154,9 +120,10 @@ device_7 = Device.create!(
 )
 
 device_8 = Device.create!(
-  name: "Tank Level #2",
+  name: "réservoir #2",
   category: "capteur",
-  status: true,
+  subcategory: "réservoir",
+  status: false,
   temperature: false,
   air_rh: false,
   ground_rh: false,
@@ -166,8 +133,9 @@ device_8 = Device.create!(
 )
 
 device_9 = Device.create!(
-  name: "Débitmètre #2",
+  name: "débitmètre #2",
   category: "capteur",
+  subcategory: "débitmètre",
   status: true,
   temperature: false,
   air_rh: false,
@@ -178,9 +146,10 @@ device_9 = Device.create!(
 )
 
 device_10 = Device.create!(
-  name: "Luminance #2",
+  name: "luminosité #2",
   category: "capteur",
-  status: true,
+  subcategory: "luminosité",
+  status: false,
   temperature: false,
   air_rh: false,
   ground_rh: false,
@@ -190,8 +159,9 @@ device_10 = Device.create!(
 )
 
 device_11 = Device.create!(
-  name: "Environment #3",
+  name: "environnement #3",
   category: "capteur",
+  subcategory: "environnement",
   status: true,
   temperature: true,
   air_rh: true,
@@ -202,8 +172,9 @@ device_11 = Device.create!(
 )
 
 device_12 = Device.create!(
-  name: "Soil Humidity #3",
+  name: "humidité sol #3",
   category: "capteur",
+  subcategory: "humidité sol",
   status: true,
   temperature: false,
   air_rh: false,
@@ -214,8 +185,9 @@ device_12 = Device.create!(
 )
 
 device_13 = Device.create!(
-  name: "Tank Level #3",
+  name: "réservoir #3",
   category: "capteur",
+  subcategory: "réservoir",
   status: true,
   temperature: false,
   air_rh: false,
@@ -226,8 +198,9 @@ device_13 = Device.create!(
 )
 
 device_14 = Device.create!(
-  name: "Débitmètre #3",
+  name: "débitmètre #3",
   category: "capteur",
+  subcategory: "débitmètre",
   status: true,
   temperature: false,
   air_rh: false,
@@ -238,8 +211,9 @@ device_14 = Device.create!(
 )
 
 device_15 = Device.create!(
-  name: "Luminance #3",
+  name: "luminosité #3",
   category: "capteur",
+  subcategory: "luminosité",
   status: true,
   temperature: false,
   air_rh: false,
@@ -250,9 +224,10 @@ device_15 = Device.create!(
 )
 
 device_16 = Device.create!(
-  name: "Environment #4",
+  name: "environnement #4",
   category: "capteur",
-  status: true,
+  subcategory: "environnement",
+  status: false,
   temperature: true,
   air_rh: true,
   ground_rh: false,
@@ -262,8 +237,9 @@ device_16 = Device.create!(
 )
 
 device_17 = Device.create!(
-  name: "Soil Humidity #4",
+  name: "humidité sol #4",
   category: "capteur",
+  subcategory: "humidité sol",
   status: true,
   temperature: false,
   air_rh: false,
@@ -274,9 +250,10 @@ device_17 = Device.create!(
 )
 
 device_18 = Device.create!(
-  name: "Tank Level #4",
+  name: "réservoir #4",
   category: "capteur",
-  status: true,
+  subcategory: "réservoir",
+  status: false,
   temperature: false,
   air_rh: false,
   ground_rh: false,
@@ -286,8 +263,9 @@ device_18 = Device.create!(
 )
 
 device_19 = Device.create!(
-  name: "Débitmètre #4",
+  name: "débitmètre #4",
   category: "capteur",
+  subcategory: "débitmètre",
   status: true,
   temperature: false,
   air_rh: false,
@@ -298,9 +276,10 @@ device_19 = Device.create!(
 )
 
 device_20 = Device.create!(
-  name: "Luminance #4",
+  name: "luminosité #4",
   category: "capteur",
-  status: true,
+  subcategory: "luminosité",
+  status: false,
   temperature: false,
   air_rh: false,
   ground_rh: false,
@@ -310,8 +289,9 @@ device_20 = Device.create!(
 )
 
 device_21 = Device.create!(
-  name: "pompe d'arrosage #1",
+  name: "arrosage #1",
   category: "actionneur",
+  subcategory: "arrosage",
   status: true,
   temperature: false,
   air_rh: false,
@@ -323,7 +303,8 @@ device_21 = Device.create!(
 
 device_22 = Device.create!(
   name: "webcam #1",
-  category: "camera",
+  category: "caméra",
+  subcategory: "caméra",
   status: true,
   temperature: false,
   air_rh: false,
@@ -333,8 +314,134 @@ device_22 = Device.create!(
   tank_level: false
 )
 
+puts "devices created"
+
+# Seed Plant
+site_name = ["Le Wagon",
+  "Jardins de Versailles",
+  "Jardin des Plantes",
+  "Jardin du Luxembourg"]
+
+plant_info = [{family: "Zamioculcas Zamiifolia",
+description: "Zamioculcas is a genus of flowering plants in the family Araceae, containing the single species Zamioculcas zamiifolia. It is a tropical perennial plant native to eastern Africa, from southern Kenya to northeastern South Africa."},
+{family: "Philodendron Scandens",
+description: "Philodendron hederaceum, the heartleaf philodendron (syn. Philodendron scandens) is a species of flowering plant in the family Araceae, native to Central America and the Caribbean."},
+{family: "Pothos",
+description: "Pothos is a genus of flowering plants in the family Araceae (tribe Potheae). It is native to China, the Indian Subcontinent, Australia, New Guinea, Southeast Asia, and various islands of the Pacific and Indian Oceans."},
+{family: "Monstera",
+description: "Monstera is a genus of 49 species of flowering plants in the arum family, Araceae, native to tropical regions of the Americas."},
+{family: "Aglaonema",
+description: "Aglaonema is a genus of flowering plants in the arum family, Araceae. They are native to tropical and subtropical regions of Asia and New Guinea.[1][2] They are known commonly as Chinese evergreens."}]
+
+plants = []
+
+plant_info.each do |val|
+  counter = 0
+  4.times do
+    species = "#{val[:family][0..1].upcase}_#{counter}"
+    plant = Plant.create!(family: val[:family],
+          species: species,
+          site_name: site_name.sample,
+          description: val[:description],
+          user_id: 1)
+    counter += 1
+    plants << plant
+  end
+end
+
+puts "plants created"
+
+# Seed PlantDevice
+def plant_device_create(plant, device)
+  PlantDevice.create!(
+    plant: plant,
+    device: device
+  )
+end
+
+puts plants[0]
+plant_device_create(plants[0], device_1)
+plant_device_create(plants[0], device_2)
+plant_device_create(plants[0], device_3)
+plant_device_create(plants[0], device_4)
+plant_device_create(plants[0], device_5)
+plant_device_create(plants[0], device_21)
+plant_device_create(plants[0], device_22)
+
+plant_device_create(plants[1], device_6)
+plant_device_create(plants[1], device_7)
+plant_device_create(plants[1], device_3)
+plant_device_create(plants[1], device_9)
+plant_device_create(plants[1], device_5)
+
+plant_device_create(plants[2], device_11)
+plant_device_create(plants[2], device_12)
+plant_device_create(plants[2], device_13)
+plant_device_create(plants[2], device_14)
+plant_device_create(plants[2], device_15)
+
+plant_device_create(plants[3], device_11)
+plant_device_create(plants[3], device_17)
+plant_device_create(plants[3], device_13)
+plant_device_create(plants[3], device_19)
+plant_device_create(plants[3], device_15)
+
+puts "plant_devices created"
+
+# Seed DeviceMetric
+# Hash establishing the link between DataMetric and Device
+hash_data_device = {
+  "db/data/data_1_1.csv" => device_1,
+  "db/data/data_1_2.csv" => device_2,
+  "db/data/data_1_3.csv" => device_3,
+  "db/data/data_1_4.csv" => device_4,
+  "db/data/data_1_5.csv" => device_5,
+  "db/data/data_2_1.csv" => device_6,
+  "db/data/data_2_2.csv" => device_7,
+  "db/data/data_2_3.csv" => device_3,
+  "db/data/data_2_4.csv" => device_9,
+  "db/data/data_2_5.csv" => device_5,
+  "db/data/data_3_1.csv" => device_11,
+  "db/data/data_3_2.csv" => device_12,
+  "db/data/data_3_3.csv" => device_13,
+  "db/data/data_3_4.csv" => device_14,
+  "db/data/data_3_5.csv" => device_15,
+  "db/data/data_4_1.csv" => device_11,
+  "db/data/data_4_2.csv" => device_17,
+  "db/data/data_4_3.csv" => device_13,
+  "db/data/data_4_4.csv" => device_19,
+  "db/data/data_4_5.csv" => device_15
+}
+
+def import_csv_data(filepath, device) # méthode pour instantier une ligne de donnée pour 1 capteur
+  CSV.foreach(filepath, headers: :first_row) do |row|
+    t = DeviceMetric.new(
+      device: device,
+      temperature: row['temperature'].to_f,
+      air_rh: row['air_rh'].to_f,
+      ground_rh: row['ground_rh'].to_f,
+      luminosity: row['luminosity'].to_f,
+      tank_level: row['tank_level'].to_i,
+      volume: row['volume'].to_f,
+      created_at: row['Time'],
+      updated_at: row['Time']
+    )
+    t.save
+  end
+end
+
+hash_data_device.each do |filepath, device|
+  import_csv_data(filepath, device)
+end
+puts "data created"
+
+
+## GEM Import activerecord-import
+
+# BULK_SIZE = 50
+
 # metrics = []
-# CSV.foreach(csv_1_1, :headers => true, :encoding => 'ISO-8859-1') do
+# CSV.foreach("db/data/data_1_1.csv", :headers => true, :encoding => 'ISO-8859-1') do
 #   metric = DeviceMetric.new(
 #     device: device_1,
 #     temperature: row['temperature'],
