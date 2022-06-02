@@ -1,0 +1,22 @@
+.main-card {
+  color: black;
+  border-radius: 5px;
+  &-photo {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+  }
+  &-detail {
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+  &-title {
+    font-weight: 600;
+    font-size: 1.3em;
+    margin-bottom: 5px;
+  }
+  &-price {
+    font-weight: 600;
+    font-size: 1.2em;
+  }
+}
