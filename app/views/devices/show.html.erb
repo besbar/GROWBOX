@@ -1,0 +1,12 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <h1>This is a show of a device</h1>
+      <%= @device.name %>
+      <br>
+      <%= @device.category %>
+      <div class="main-card-photo" style="background-image: url(<%= image_path("devices/#{@device.name.chop.chop.chop.parameterize}") %>)"></div>
+      <%= link_to "Index of all alerts", device_alert_settings_path(@device) %>
+    </div>
+  </div>
+</div>

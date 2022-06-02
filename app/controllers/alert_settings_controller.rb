@@ -1,6 +1,6 @@
 class AlertSettingsController < ApplicationController
   before_action :set_alert_setting, only: %i[new]
-  before_action :set_sensor, only: %i[create]
+  before_action :set_device, only: %i[new create]
 
   def index
     @alert_settings = Alert_setting.all
@@ -26,7 +26,7 @@ class AlertSettingsController < ApplicationController
     params.require(:devices).permit(:description, :temperature_min, :temperature_max, :air_rh_min, :air_rh_max, :tank_level_min, :ground_rh_min, :ground_rh_min, :luminosity_min, :luminosity_max)
   end
 
-  def set_sensor
+  def set_device
     @device = Device.new
   end
 end
