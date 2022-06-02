@@ -1,9 +1,15 @@
-<h1>Ma plante</h1>
-
-<%= @plant.family %>
-<br>
-<%= @plant.species %>
-<br>
-<%= @plant.site_name %>
-<br>
-<%= @plant.description %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <h1>Ma plante</h1>
+      <%= @plant.family %>
+      <br>
+      <%= @plant.species %>
+      <br>
+      <%= @plant.site_name %>
+      <br>
+      <%= @plant.description %>
+      <div class="main-card-photo" style="background-image: url(<%= image_path("plants/#{@plant.family.parameterize}") %>)"></div>
+    </div>
+  </div>
+</div>

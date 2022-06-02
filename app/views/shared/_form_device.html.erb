@@ -1,12 +1,6 @@
 <%= simple_form_for(device) do |t| %>
-<%= t.input :name %>
-<%= t.input :status %>
-<%= t.input :temperature %>
-<%= t.input :air_rh %>
-<%= t.input :ground_rh %>
-<%= t.input :luminosity %>
-<%= t.input :volume %>
-<%= t.input :tank_level %>
+<%= t.input :category, collection: Device::CATEGORY %>
+<%= t.input :subcategory, collection: Device::SUBCATEGORY %>
 <% if device.persisted?  %>
   <%= t.submit "Mettre à jour mon capteur" %>
 <% else %>
