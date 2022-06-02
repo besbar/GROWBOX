@@ -17,7 +17,7 @@ class PlantsController < ApplicationController
     @ground_rh_latest = @ground_rh.last[1].round
 
     # Get latest tank level
-    @tank_level_latest = 0
+    @tank_level_latest = set_latest_tank_level
   end
 
   def new
