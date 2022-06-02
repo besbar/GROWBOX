@@ -31,6 +31,8 @@ gem "jbuilder"
 
 gem "cloudinary"
 
+gem 'mqtt', :git => 'https://github.com/njh/ruby-mqtt.git'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
