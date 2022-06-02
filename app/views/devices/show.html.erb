@@ -6,7 +6,8 @@
       <br>
       <%= @device.category %>
       <div class="main-card-photo" style="background-image: url(<%= image_path("devices/#{@device.name.chop.chop.chop.parameterize}") %>)"></div>
-      <%= link_to "Index of all alerts", device_alert_settings_path(@device) %>
+      <%= link_to "Créer une nouvelle alerte", new_device_alert_setting_path(@device) %>
+      <%= link_to "Mes alertes", device_alert_settings_path(@device) %>
     </div>
   </div>
 </div>

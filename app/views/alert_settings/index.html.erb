@@ -1,1 +1,11 @@
 <h1>Alert settings</h1>
+
+<p> <%= @device.category %> : <%= @device.name %></p>
+
+<ul>
+<% @alert_settings.each do |alert| %>
+<li><%= link_to alert.description, device_alert_setting_path(@device, alert) %> <%= link_to alert_setting_path(alert), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%><i class="fa-solid fa-trash-can"></i><% end %> </li>
+<% end %>
+</ul>
+
+<%= link_to "Revenir au capteur", device_path(@device) %>

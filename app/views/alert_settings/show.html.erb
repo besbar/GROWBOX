@@ -1,0 +1,7 @@
+
+
+<h1>Device: <%= @device.name %></h1>
+<h2>Description de l'alerte: <%= @alert_setting.description %></h2>
+
+<%= link_to "Voir toutes mes alertes", device_alert_settings_path(@alert_setting)  %>
+<%= link_to "Revenir à mon capteur", device_path(@device)  %>
