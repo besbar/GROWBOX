@@ -1,3 +1,19 @@
 <h1>Mon alerte</h1>
 
-<%= render "shared/form_alert_setting", alert_setting: @alert_setting  %>
+<%= simple_form_for([@device, @alert_setting]) do |t| %>
+<%= t.input :description %>
+<%= t.input :temperature_min if @device.temperature == true %>
+<%= t.input :temperature_max if @device.temperature == true %>
+<%= t.input :air_rh_min if @device.air_rh == true %>
+<%= t.input :air_rh_max if @device.air_rh == true %>
+<%= t.input :tank_level_min if @device.tank_level == true %>
+<%= t.input :ground_rh_min if @device.ground_rh == true %>
+<%= t.input :ground_rh_max if @device.ground_rh == true %>
+<%= t.input :luminosity_min if @device.luminosity == true %>
+<%= t.input :luminosity_max if @device.luminosity == true %>
+<% if @alert_setting.persisted?  %>
+  <%= t.submit "Mettre à jour mon alerte" %>
+<% else %>
+  <%= t.submit "Sauver mon alerte" %>
+<% end %>
+<% end %>
