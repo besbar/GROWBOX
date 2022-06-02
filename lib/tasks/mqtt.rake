@@ -31,21 +31,23 @@ namespace :mqtt do
     client.connect()
 
     # client.subscribe('air_temp_4', 'air_humi_4', 'soil_humi_4', 'flowMeter_4', 'tank_4')
-    client.subscribe('air_temp_4', 'air_humi_4', 'soil_humi_4', 'flow_meter_4', 'tank_level_4')
+    client.subscribe('air_temp_4', 'air_humi_4', 'soil_humi_4', 'flow_meter_4', 'tank_level_4', 'sensors_4', 'Plug1_state_4', 'Plug2_state_4', 'Plug3_state_4', 'Plug4_state_4', 'grow_plug_4')
     #client.connect() do |c|
       # If you pass a block to the get method, then it will loop
       client.get do |topic,message|
         puts "#{topic}: #{message}"
-        match_data = topic.match(/(?<channel_name>[a-z_]+)_(?<channel_id>\d)/)
-        channel_name = match_data[:channel_name]
-        puts channel_name
-        channel_id = match_data[:channel_id]
-        device = TOPIC_PER_DEVICE_ID[topic]
-        puts device.name
-        metric_name = METRIC_NAME_PER_CHANNEL_NAME[channel_name]
-        puts metric_name
-        puts DeviceMetric.create(device: device, metric_name => message)
-        client.publish('test', "The time is: #{Time.now}")
+        if ['air_temp_4', 'air_humi_4', 'soil_humi_4', 'flow_meter_4', 'tank_level_4'].include?(topic)
+          match_data = topic.match(/(?<channel_name>[a-z_]+)_(?<channel_id>\d)/)
+          channel_name = match_data[:channel_name]
+          puts channel_name
+          channel_id = match_data[:channel_id]
+          device = TOPIC_PER_DEVICE_ID[topic]
+          puts device.name
+          metric_name = METRIC_NAME_PER_CHANNEL_NAME[channel_name]
+          puts metric_name
+          puts DeviceMetric.create(device: device, metric_name => message)
+        end
+        #client.publish('test', "The time is: #{Time.now}")
       end
     #end
 
