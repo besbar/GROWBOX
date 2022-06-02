@@ -10,8 +10,6 @@ class MqttDataBuilder
   def initialize
     @client = {
       host: '10.20.1.137',
-      #:host => 'test.mosquitto.org',
-      #:host => '192.168.1.105',
       port: 1883,
       username: "jb",
       password: "growbox"
@@ -58,4 +56,3 @@ class MqttDataBuilder
       return data
     end
   end
-end

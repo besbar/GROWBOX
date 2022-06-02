@@ -38,7 +38,8 @@ device_1 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_2 = Device.create!(
@@ -51,7 +52,8 @@ device_2 = Device.create!(
   ground_rh: true,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_3 = Device.create!(
@@ -64,7 +66,8 @@ device_3 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: true
+  tank_level: true,
+  user_id: 1
 )
 
 device_4 = Device.create!(
@@ -77,7 +80,8 @@ device_4 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: true,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_5 = Device.create!(
@@ -90,7 +94,8 @@ device_5 = Device.create!(
   ground_rh: false,
   luminosity: true,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_6 = Device.create!(
@@ -103,7 +108,8 @@ device_6 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_7 = Device.create!(
@@ -116,7 +122,8 @@ device_7 = Device.create!(
   ground_rh: true,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_8 = Device.create!(
@@ -129,7 +136,8 @@ device_8 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: true
+  tank_level: true,
+  user_id: 1
 )
 
 device_9 = Device.create!(
@@ -142,7 +150,8 @@ device_9 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: true,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_10 = Device.create!(
@@ -155,7 +164,8 @@ device_10 = Device.create!(
   ground_rh: false,
   luminosity: true,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_11 = Device.create!(
@@ -168,7 +178,8 @@ device_11 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_12 = Device.create!(
@@ -181,7 +192,8 @@ device_12 = Device.create!(
   ground_rh: true,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_13 = Device.create!(
@@ -194,7 +206,8 @@ device_13 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: true
+  tank_level: true,
+  user_id: 1
 )
 
 device_14 = Device.create!(
@@ -207,7 +220,8 @@ device_14 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: true,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_15 = Device.create!(
@@ -220,7 +234,8 @@ device_15 = Device.create!(
   ground_rh: false,
   luminosity: true,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_16 = Device.create!(
@@ -233,7 +248,8 @@ device_16 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_17 = Device.create!(
@@ -246,7 +262,8 @@ device_17 = Device.create!(
   ground_rh: true,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_18 = Device.create!(
@@ -259,7 +276,8 @@ device_18 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: true
+  tank_level: true,
+  user_id: 1
 )
 
 device_19 = Device.create!(
@@ -272,7 +290,8 @@ device_19 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: true,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_20 = Device.create!(
@@ -285,7 +304,8 @@ device_20 = Device.create!(
   ground_rh: false,
   luminosity: true,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_21 = Device.create!(
@@ -298,7 +318,8 @@ device_21 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 device_22 = Device.create!(
@@ -311,7 +332,8 @@ device_22 = Device.create!(
   ground_rh: false,
   luminosity: false,
   volume: false,
-  tank_level: false
+  tank_level: false,
+  user_id: 1
 )
 
 puts "devices created"

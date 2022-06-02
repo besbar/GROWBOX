@@ -1,1 +1,20 @@
 <h1>Devices</h1>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div>
+        <h1 class="text-primary fs-1 fw-bold text-center mb-4"><%= @devices.length %> capteurs sous gestion</h1>
+      </div>
+      <div class="grid">
+        <% @devices.each do |device| %>
+          <%= link_to device_path(device), class: 'text-decoration-none' do %>
+            <%= render 'partial/card_device', device: device %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<%= link_to "Ajouter un capteur", new_device_path%>
