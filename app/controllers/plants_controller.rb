@@ -1,15 +1,25 @@
 class PlantsController < ApplicationController
-  before_action :set_plant, only: %i[new]
+  before_action :set_plant, only: :show
 
   def index
     @plants = Plant.all
   end
 
   def show
-    @plant = Plant.find(params[:id])
+    attached_devices = @plant.devices
+    temperatures = { name: "Temperatures (°C)", data: [] }
+    air_rh = { name: "Air humidity (%)", data: [] }
+    attached_devices.where(temperature: true).first.device_metrics.map do |data|
+      temperatures[:data] << [data.created_at, data.temperature]
+    end
+    attached_devices.where(temperature: true).first.device_metrics.map do |data|
+      air_rh[:data] << [data.created_at, data.air_rh]
+    end
+    @data = [temperatures, air_rh]
   end
 
   def new
+    @plant = Plant.new
   end
 
   def create
@@ -25,7 +35,7 @@ class PlantsController < ApplicationController
   private
 
   def set_plant
-    @plant = Plant.new
+    @plant = Plant.find(params[:id])
   end
 
   def plant_params
