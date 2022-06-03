@@ -2,11 +2,11 @@
   <div class="main-card-photo" style="background-image: url(<%= image_path("plants/#{plant.family.parameterize}.png") %>)"></div>
   <div class="main-card-info p-3">
     <div>
-      <h3 class="main-card-title "><%= plant.species %></h3>
-      <h4 class="main-card-price align-self-center"><%= plant.site_name %></h4>
-    </div>
-    <div>
-        <p class="main-card-detail my-0 me-2"><%= plant.description %></p>
+      <h3 class="main-card-title"><%= plant.family %> <small class="opacity-50"><%= plant.species %></small></h3>
+      <div class="d-flex align-items-center opacity-50">
+        <i class="fa-solid fa-location-dot me-2"></i>
+        <span class="main-card-price align-self-center"><%= plant.site_name %></span>
+      </div>
     </div>
   </div>
 </div>

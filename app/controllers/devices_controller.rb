@@ -1,12 +1,17 @@
 class DevicesController < ApplicationController
-  before_action :set_device, only: %i[new]
+  before_action :set_device, only: :show
 
   def index
     @devices = Device.all
   end
 
   def show
-    @device = Device.find(params[:id])
+    @attached_plants = @device.plants
+    @attached_alerts = @device.alert_settings
+  end
+
+  def new
+    @device = Device.new
   end
 
   def create
@@ -37,7 +42,7 @@ class DevicesController < ApplicationController
   private
 
   def set_device
-    @device = Device.new
+    @device = Device.find(params[:id])
   end
 
   def device_params
