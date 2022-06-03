@@ -47,7 +47,7 @@
         <div class="my-3 tab-pane fade show" id="alert_settings" role="tabpanel" aria-labelledby="alert_settings-tab">
           <div class="grid">
               <% @alert_settings.each do |alert_setting| %>
-              <%= link_to device_alert_settings_path(alert_setting), class: 'text-decoration-none' do %>
+              <%= link_to device_path(alert_setting.sensor), class: 'text-decoration-none' do %>
                 <%= render 'partial/card_alert_setting', alert_setting: alert_setting %>
               <% end %>
             <% end %>

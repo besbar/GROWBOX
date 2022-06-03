@@ -2,16 +2,18 @@
   <div class="main-card-info p-3">
     <div>
       <h3 class="main-card-title "><%= alert_setting.sensor.name %></h3>
-      <h4 class="main-card-price align-self-center"><%= alert_setting.description %></h4>
-      <%= alert_setting.temperature_min unless alert_setting.temperature_min.nil? %>
-      <%= alert_setting.temperature_max unless alert_setting.temperature_max.nil? %>
-      <%= alert_setting.air_rh_min unless alert_setting.air_rh_min.nil? %>
-      <%= alert_setting.air_rh_max unless alert_setting.air_rh_max.nil? %>
-      <%= alert_setting.tank_level_min unless alert_setting.tank_level_min.nil? %>
-      <%= alert_setting.ground_rh_min unless alert_setting.ground_rh_min.nil? %>
-      <%= alert_setting.ground_rh_max unless alert_setting.ground_rh_max.nil? %>
-      <%= alert_setting.luminosity_min unless alert_setting.luminosity_min.nil? %>
-      <%= alert_setting.luminosity_max unless alert_setting.luminosity_max.nil? %>
+      <p class="align-self-center fs-0"><em>Variable à surveiller<em></p>
+      <div class="d-flex justify-content-around">
+      <%= "T° Min: #{alert_setting.temperature_min.to_i}°C - " unless alert_setting.temperature_min.nil?%>
+      <%= "T° Max: #{alert_setting.temperature_max.to_i}°C" unless alert_setting.temperature_max.nil? %>
+      <%= "Humidité Min: #{alert_setting.air_rh_min}°C - " unless alert_setting.air_rh_min.nil? %>
+      <%= "Humidité Max: #{alert_setting.air_rh_max}°C" unless alert_setting.air_rh_max.nil? %>
+      <%= "Etat du réservoir" unless alert_setting.tank_level_min.nil? || alert_setting.tank_level_min == 0 %>
+      <%= "Humidité relative du sol min: #{alert_setting.ground_rh_min} % - " unless alert_setting.ground_rh_min.nil?%>
+      <%= "Humidité relative du sol max: #{alert_setting.ground_rh_max} %" unless alert_setting.ground_rh_max.nil? %>
+      <%= "Luminosité min: #{alert_setting.luminosity_min} lumens - " unless alert_setting.luminosity_min.nil? %>
+      <%= "Luminosité min: #{alert_setting.luminosity_max} lumens" unless alert_setting.luminosity_max.nil? %>
+      </div>
     </div>
   </div>
 </div>
