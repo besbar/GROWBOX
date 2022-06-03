@@ -17,7 +17,7 @@ class AlertSettingsController < ApplicationController
     @alert_setting = AlertSetting.new(alert_setting_params)
     @alert_setting.sensor = @device
     if @alert_setting.save
-      redirect_to device_alert_setting_path(@alert_setting.sensor_id, @alert_setting)
+      redirect_to device_path(@alert_setting.sensor_id)
     else
       render :new, status: :unprocessable_entity
     end
