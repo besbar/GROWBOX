@@ -1,0 +1,17 @@
+<div class="main-card border shadow-sm">
+  <div class="main-card-info p-3">
+    <div>
+      <h3 class="main-card-title "><%= alert_setting.sensor.name %></h3>
+      <h4 class="main-card-price align-self-center"><%= alert_setting.description %></h4>
+      <%= alert_setting.temperature_min unless alert_setting.temperature_min.nil? %>
+      <%= alert_setting.temperature_max unless alert_setting.temperature_max.nil? %>
+      <%= alert_setting.air_rh_min unless alert_setting.air_rh_min.nil? %>
+      <%= alert_setting.air_rh_max unless alert_setting.air_rh_max.nil? %>
+      <%= alert_setting.tank_level_min unless alert_setting.tank_level_min.nil? %>
+      <%= alert_setting.ground_rh_min unless alert_setting.ground_rh_min.nil? %>
+      <%= alert_setting.ground_rh_max unless alert_setting.ground_rh_max.nil? %>
+      <%= alert_setting.luminosity_min unless alert_setting.luminosity_min.nil? %>
+      <%= alert_setting.luminosity_max unless alert_setting.luminosity_max.nil? %>
+    </div>
+  </div>
+</div>
