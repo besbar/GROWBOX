@@ -5,6 +5,7 @@
     background-size: cover;
     background-position: center;
     height: 250px;
+    border-radius: 5px
   }
   &-detail {
     font-weight: 400;
@@ -15,8 +16,8 @@
     font-size: 1.3em;
     margin-bottom: 5px;
   }
-  &-price {
-    font-weight: 600;
+  &-location {
+    font-weight: 300;
     font-size: 1.2em;
   }
 }
