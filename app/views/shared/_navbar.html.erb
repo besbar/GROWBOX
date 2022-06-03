@@ -1,7 +1,13 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon bg-primary position-sticky top-0">
   <div class="container-fluid">
+    <% if user_signed_in? %>
+    <%= link_to "/dashboard", class: "navbar-brand" do %>
+    <p class="mb-0 text-white font-weight-bold"> MYGROWBOX </p>
+    <% end %>
+    <% else %>
     <%= link_to "/", class: "navbar-brand" do %>
-      <p class="mb-0 text-white font-weight-bold"> MYGROWBOX </p>
+    <p class="mb-0 text-white font-weight-bold"> MYGROWBOX </p>
+    <% end %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

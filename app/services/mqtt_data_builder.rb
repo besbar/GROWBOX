@@ -56,3 +56,4 @@ class MqttDataBuilder
       return data
     end
   end
+end
