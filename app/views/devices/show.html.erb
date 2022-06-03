@@ -1,13 +1,68 @@
 <div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-8">
-      <h1>This is a show of a device</h1>
-      <%= @device.name %>
-      <br>
-      <%= @device.category %>
-      <div class="main-card-photo" style="background-image: url(<%= image_path("devices/#{@device.name.chop.chop.chop.parameterize}") %>)"></div>
-      <%= link_to "Créer une nouvelle alerte", new_device_alert_setting_path(@device) %>
-      <%= link_to "Mes alertes", device_alert_settings_path(@device) %>
+    <div class="col-12">
+      <h1 class="mb-3"><%= @device.name.capitalize %></h1>
+      <div class="show-device row">
+        <div class="show-device-about mb-3 col-12 col-lg-4 d-flex flex-column">
+          <div class="p-3 main-card border shadow-sm flex-grow-1">
+            <h3>À propos</h3>
+            <div class="photo my-3 rounded" style="background-image: url(<%= image_path("devices/#{@device.name.chop.chop.chop.parameterize}") %>)"></div>
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-globe me-2"></i>
+                <span>Identifiant interne</span>
+              </div>
+              <p><%= @device.id %></p>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-bolt me-2"></i>
+                <span>Type d'appareil</span>
+              </div>
+              <p><%= @device.category.capitalize %> (<%= @device.subcategory %>)</p>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-clock me-2"></i>
+                <span>Date d'ajout</span>
+              </div>
+              <p><%= @device.created_at.strftime("%d/%m/%Y à %H:%M") %></p>
+            </div>
+          </div>
+        </div>
+        <div class="show-device-attached mb-3 col-12 col-lg-8 d-flex flex-column">
+          <div class="p-3 mb-3 main-card border shadow-sm flex-grow-1">
+            <h3>Rattaché à <%= pluralize(@attached_plants.count, 'plante') %></h3>
+            <div class="row">
+              <% @attached_plants.each do |plant| %>
+                <div class="col-12 col-lg-6">
+                  <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
+                    <%= render 'partial/card', plant: plant %>
+                  <% end %>
+                </div>
+              <%end %>
+            </div>
+            <%= link_to new_plant_path, class:"mt-3 btn btn-primary" do %>
+              <i class="fa-solid fa-plus me-2"></i>
+              <span>Nouvelle plante</span>
+            <% end %>
+          </div>
+          <div class="p-3 main-card border shadow-sm">
+            <h3>Rattaché à <%= pluralize(@attached_alerts.count, 'alerte') %></h3>
+            <% @attached_alerts.each do |alert| %>
+              <ul>
+                <%= link_to device_alert_setting_path(@device, alert) do %>
+                  <li> Alerte #<%= alert.id %></li>
+                <% end %>
+              </ul>
+            <% end %>
+            <%= link_to new_device_alert_setting_path(@device), class:"mt-3 btn btn-primary" do %>
+              <i class="fa-solid fa-plus me-2"></i>
+              <span>Nouvelle alerte</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
