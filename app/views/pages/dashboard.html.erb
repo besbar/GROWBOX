@@ -35,11 +35,20 @@
             <% end %>
           </div>
         </div>
-        <div class="my-3 tab-pane fade show active" id="devices" role="tabpanel" aria-labelledby="devices-tab">
+        <div class="my-3 tab-pane fade show" id="devices" role="tabpanel" aria-labelledby="devices-tab">
           <div class="grid">
               <% @devices.each do |device| %>
               <%= link_to device_path(device), class: 'text-decoration-none' do %>
                 <%= render 'partial/card_device', device: device %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="my-3 tab-pane fade show" id="alert_settings" role="tabpanel" aria-labelledby="alert_settings-tab">
+          <div class="grid">
+              <% @alert_settings.each do |alert_setting| %>
+              <%= link_to device_path(alert_setting.sensor), class: 'text-decoration-none' do %>
+                <%= render 'partial/card_alert_setting', alert_setting: alert_setting %>
               <% end %>
             <% end %>
           </div>
