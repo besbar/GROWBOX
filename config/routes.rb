@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :alert_settings, only: %i[index new show create]
   end
   resources :alert_settings, only: %i[destroy]
+  get "dashboard", to: "pages#dashboard"
   # Defines the root path route ("/")
   # root "articles#index"
 end
