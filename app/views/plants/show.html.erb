@@ -1,9 +1,55 @@
-<h1>Ma plante</h1>
-
-<%= @plant.family %>
-<br>
-<%= @plant.species %>
-<br>
-<%= @plant.site_name %>
-<br>
-<%= @plant.description %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <h1 class="mb-3"><%= @plant.family %></h1>
+      <div class="show-plant row">
+        <div class="show-plant-about mb-3 col-12 col-lg-4 d-flex flex-column">
+          <div class="p-3 main-card border shadow-sm flex-grow-1">
+            <h3>À propos</h3>
+            <div class="photo my-3 rounded" style="background-image: url(<%= image_path("plants/#{@plant.family.parameterize}.png") %>)"></div>
+            <p><%= @plant.description %></p>
+            <p><%= @plant.species %></p>
+            <p><%= @plant.site_name %></p>
+          </div>
+        </div>
+        <div class="show-plant-data mb-3 col-12 col-lg-4 d-flex flex-column">
+          <div class="p-3 mb-3 main-card border shadow-sm">
+            <h3>Environnement</h3>
+            <div class="show-plant-highlight my-3 d-flex justify-content-around rounded">
+              <h3 class="my-2 text-primary"><%= @temperature_latest %>°C</h3>
+              <h3 class="my-2 text-primary"><%= @air_rh_latest %>%</h3>
+            </div>
+            <%= area_chart @temperature_air_rh, colors: ["#097479", "#A2E8E6"] %>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1 main-card border shadow-sm">
+            <h3>Réservoir</h3>
+            <% if @tank_level_latest.nonzero?  %>
+              <div class="tank tank-full d-flex flex-grow-1 align-items-center justify-content-center">
+                <span class="p-3 text-center">Le niveau du réservoir semble correct</span>
+              </div>
+            <% else %>
+              <div class="tank tank-empty d-flex flex-grow-1 align-items-center justify-content-center">
+                <span class="p-3 text-center">Vérifiez le niveau du réservoir !</span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="show-plant-data mb-3 col-12 col-lg-4 d-flex flex-column">
+          <div class="p-3 mb-3 main-card border shadow-sm">
+            <h3>Humidité sol</h3>
+            <div class="show-plant-highlight my-3 d-flex justify-content-center rounded">
+              <h3 class="my-2 text-primary"><%= @ground_rh_latest %>%</h3>
+            </div>
+            <%= area_chart @ground_rh, suffix:"%", colors: ["#DEA057"] %>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1 main-card border shadow-sm">
+            <h3>Alertes</h3>
+            <div class="d-flex align-items-center flex-grow-1">
+            <span>Pas d'alertes pour <%= @plant.family %> (#<%= @plant.id %>)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

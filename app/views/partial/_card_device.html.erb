@@ -1,0 +1,13 @@
+<div class="main-card border shadow-sm">
+  <div class="main-card-photo" style="background-image: url(<%= image_path("devices/#{device.name.chop.chop.chop.parameterize}") %>)"></div>
+  <div class="main-card-info p-3">
+    <div>
+      <h3 class="main-card-title "><%= device.name %></h3>
+      <h3></h3>
+      <h4 class="main-card-price align-self-center"><%= device.category %></h4>
+    </div>
+    <div>
+        <p class="main-card-detail my-0 me-2"><%= device.status %></p>
+    </div>
+  </div>
+</div>
