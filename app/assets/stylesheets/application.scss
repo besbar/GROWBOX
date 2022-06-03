@@ -11,3 +11,12 @@
 @import "components/index";
 @import "pages/index";
 @import "views/plants/show";
+@import "views/devices/show";
+
+// Global styles
+.photo {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 200px;
+}
