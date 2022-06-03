@@ -10,6 +10,7 @@ require "nokogiri"
 require 'csv'
 
 DeviceMetric.destroy_all
+PlantDevice.destroy_all
 Device.destroy_all
 Plant.destroy_all
 User.destroy_all
@@ -39,7 +40,7 @@ device_1 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_2 = Device.create!(
@@ -53,7 +54,7 @@ device_2 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_3 = Device.create!(
@@ -67,7 +68,7 @@ device_3 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: true,
-  user_id: 1
+  user: user
 )
 
 device_4 = Device.create!(
@@ -81,7 +82,7 @@ device_4 = Device.create!(
   luminosity: false,
   volume: true,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_5 = Device.create!(
@@ -95,7 +96,7 @@ device_5 = Device.create!(
   luminosity: true,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_6 = Device.create!(
@@ -109,7 +110,7 @@ device_6 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_7 = Device.create!(
@@ -123,7 +124,7 @@ device_7 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_8 = Device.create!(
@@ -137,7 +138,7 @@ device_8 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: true,
-  user_id: 1
+  user: user
 )
 
 device_9 = Device.create!(
@@ -151,7 +152,7 @@ device_9 = Device.create!(
   luminosity: false,
   volume: true,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_10 = Device.create!(
@@ -165,7 +166,7 @@ device_10 = Device.create!(
   luminosity: true,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_11 = Device.create!(
@@ -179,7 +180,7 @@ device_11 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_12 = Device.create!(
@@ -193,7 +194,7 @@ device_12 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_13 = Device.create!(
@@ -207,7 +208,7 @@ device_13 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: true,
-  user_id: 1
+  user: user
 )
 
 device_14 = Device.create!(
@@ -221,7 +222,7 @@ device_14 = Device.create!(
   luminosity: false,
   volume: true,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_15 = Device.create!(
@@ -235,7 +236,7 @@ device_15 = Device.create!(
   luminosity: true,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_16 = Device.create!(
@@ -249,7 +250,7 @@ device_16 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_17 = Device.create!(
@@ -263,7 +264,7 @@ device_17 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_18 = Device.create!(
@@ -277,7 +278,7 @@ device_18 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: true,
-  user_id: 1
+  user: user
 )
 
 device_19 = Device.create!(
@@ -291,7 +292,7 @@ device_19 = Device.create!(
   luminosity: false,
   volume: true,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_20 = Device.create!(
@@ -305,7 +306,7 @@ device_20 = Device.create!(
   luminosity: true,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_21 = Device.create!(
@@ -319,7 +320,7 @@ device_21 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 device_22 = Device.create!(
@@ -333,7 +334,7 @@ device_22 = Device.create!(
   luminosity: false,
   volume: false,
   tank_level: false,
-  user_id: 1
+  user: user
 )
 
 puts "devices created"
@@ -365,7 +366,7 @@ plant_info.each do |val|
           species: species,
           site_name: site_name.sample,
           description: val[:description],
-          user_id: 1)
+          user: user)
     counter += 1
     plants << plant
   end
