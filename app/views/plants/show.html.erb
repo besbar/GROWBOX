@@ -1,15 +1,33 @@
 <div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-10">
+    <div class="col-12">
       <h1 class="mb-3"><%= @plant.family %></h1>
       <div class="show-plant row">
         <div class="show-plant-about mb-3 col-12 col-lg-4 d-flex flex-column">
           <div class="p-3 main-card border shadow-sm flex-grow-1">
             <h3>À propos</h3>
             <div class="photo my-3 rounded" style="background-image: url(<%= image_path("plants/#{@plant.family.parameterize}.png") %>)"></div>
-            <p><%= @plant.description %></p>
-            <p><%= @plant.species %></p>
-            <p><%= @plant.site_name %></p>
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-leaf me-2"></i>
+                <span>Espèce</span>
+              </div>
+              <p><%= @plant.species %></p>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-location-dot me-2"></i>
+                <span>Localisation</span>
+              </div>
+              <p><%= @plant.site_name %></p>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-circle-info me-2"></i>
+                <span>Détails</span>
+              </div>
+              <p><%= @plant.description %></p>
+            </div>
           </div>
         </div>
         <div class="show-plant-data mb-3 col-12 col-lg-4 d-flex flex-column">
@@ -44,8 +62,8 @@
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1 main-card border shadow-sm">
             <h3>Alertes</h3>
-            <div class="d-flex align-items-center flex-grow-1">
-            <span>Pas d'alertes pour <%= @plant.family %> (#<%= @plant.id %>)</span>
+            <div class="d-flex align-items-center text-center flex-grow-1">
+              <span>Pas d'alertes pour <%= @plant.family %> (#<%= @plant.id %>)</span>
             </div>
           </div>
         </div>
