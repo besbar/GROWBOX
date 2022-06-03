@@ -5,8 +5,8 @@
         <%= simple_form_for(device) do |t| %>
         <h1 class="fs-3 text-center pb-2 fw-bold"><%= "Mon capteur" %></h1>
         <p class="fs-5 text-center pb-2 border-bottom opacity-50 mb-2"><%= "Créer un nouveau capteur" %></p>
-        <%= t.input :category, collection: Device::CATEGORY%>
-        <%= t.input :subcategory, collection: Device::SUBCATEGORY %>
+        <%= t.input :category, label:"Catégorie", collection: Device::CATEGORY%>
+        <%= t.input :subcategory, label:"Sous-catégorie", collection: Device::SUBCATEGORY %>
         <% if device.persisted?  %>
           <%= t.submit "Mettre à jour mon capteur", class:"w-40 btn btn-primary text-light fw-semibold fs-5" %>
         <% else %>
