@@ -5,5 +5,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @user = current_user
+    @plants = Plant.all.where(user: @user)
+    @devices = Device.all.where(user: @user)
   end
 end
