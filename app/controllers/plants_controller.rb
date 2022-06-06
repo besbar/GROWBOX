@@ -1,9 +1,16 @@
 class PlantsController < ApplicationController
-  before_action :set_plant, only: :show
+  before_action :set_plant, only: %i[show edit update]
   before_action :set_attached_devices, only: :show
 
   def index
     @plants = Plant.all
+    @markers = @plants.geocoded.map do |plant|
+      {
+        lat: plant.latitude,
+        lng: plant.longitude
+        info_window: render_to_string(partial: "info_window", locals: {plant: plant})
+      }
+    end
   end
 
   def show
@@ -30,12 +37,22 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.new(plant_params)
     @plant.user = current_user
+    @plant.address = Plant::SITE_NAME_ADDRESS[Plant::SITE_NAME.find_index(plant_params[:site_name])]
     if @plant.save
       attach_devices
       redirect_to plant_path(@plant)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @plant.update(plant_params)
+    @plant.update({address: Plant::SITE_NAME_ADDRESS[Plant::SITE_NAME.find_index(plant_params[:site_name])]})
+    redirect_to plant_path(@plant)
   end
 
   private
