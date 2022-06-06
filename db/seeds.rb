@@ -21,7 +21,8 @@ user = User.new(
   last_name: "vandamme",
   company: "akagreen",
   email:"nolan.vandamme@gmail.com",
-  password:"1234567"
+  password:"1234567",
+  admin: true
 )
 user.save
 puts "users created"

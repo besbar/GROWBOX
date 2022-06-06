@@ -10,6 +10,8 @@ class MqttDataBuilder
   def initialize
     @client = {
       host: '10.20.1.137',
+      # host: "4.tcp.eu.ngrok.io",
+      # port: 14808,
       port: 1883,
       username: "jb",
       password: "growbox"
