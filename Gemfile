@@ -33,6 +33,8 @@ gem "cloudinary"
 
 gem 'mqtt', :git => 'https://github.com/njh/ruby-mqtt.git'
 
+gem "geocoder"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

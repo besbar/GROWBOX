@@ -2,11 +2,11 @@
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6">
       <div class="form shadow-sm px-4 py-3">
-      <%= simple_form_for(plant) do |t| %>
+      <%= simple_form_for(@plant) do |t| %>
       <h1 class="fs-3 text-center pb-2 fw-bold"><%= "Ma plante" %></h1>
-        <p class="fs-5 text-center pb-2 border-bottom opacity-50 mb-2"><%= "Créer une nouvelle plante" %></p>
+      <p class="fs-5 text-center pb-2 border-bottom opacity-50 mb-2"><%= "Créer une nouvelle plante" %></p>
       <%= t.input :family, label:"Famille", collection: Plant::FAMILY %>
-      <div class="row ">
+      <div class="row">
         <div class="col-12 col-lg-6">
           <%= t.input :species, label:"Espèce"%>
         </div>
@@ -14,12 +14,11 @@
           <%= t.input :site_name, label:"Nom de site", collection: Plant::SITE_NAME %>
         </div>
       </div>
+      <div class="tag-checkbox-group">
+        <%= t.input :device_ids, label: "Capteur(s) associé(s)", as: :check_boxes, collection: @devices %>
+      </div>
       <%= t.input :description, label:"Informations clés" %>
-      <% if plant.persisted?  %>
-        <%= t.submit "Mettre à jour ma plante", class:"w-40 btn btn-primary text-light fw-semibold fs-5"%>
-      <% else %>
-        <%= t.submit "Enregistrer ma nouvelle plante", class:"w-40 btn btn-primary text-light fw-semibold fs-5"%>
-      <% end %>
+      <%= t.submit "Créer ma plante", class:"w-40 btn btn-primary text-light fw-semibold fs-5"%>
       <% end %>
       </div>
     </div>
