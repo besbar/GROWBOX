@@ -24,12 +24,14 @@ class PlantsController < ApplicationController
 
   def new
     @plant = Plant.new
+    @devices = Device.all
   end
 
   def create
     @plant = Plant.new(plant_params)
     @plant.user = current_user
     if @plant.save
+      attach_devices
       redirect_to plant_path(@plant)
     else
       render :new, status: :unprocessable_entity
@@ -42,12 +44,19 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
   end
 
+  def attach_devices
+    params[:plant][:device_ids][(1..)].each do |device|
+      PlantDevice.create(plant_id: @plant.id,
+                         device_id: device)
+    end
+  end
+
   def set_attached_devices
     @attached_devices = @plant.devices.empty? ? [] : @plant.devices
   end
 
   def plant_params
-    params.require(:plant).permit(:family, :species, :site_name, :description)
+    params.require(:plant).permit(:family, :species, :site_name, :description, :device_ids)
   end
 
   def set_temperature_air_rh
