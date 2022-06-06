@@ -3,21 +3,23 @@
     <div class="col-12 col-lg-6">
       <div class="form shadow-sm px-4 py-3">
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-          <h1 class="fs-3 text-center pb-2 fw-bold"><%= "Welcome back" %></h1>
-            <p class="fs-5 text-center pb-2 border-bottom opacity-50 mb-2"><%= "Log in" %></p>
+          <h1 class="fs-3 text-center pb-2 fw-bold"><%= "Bienvenue" %></h1>
+            <p class="fs-5 text-center pb-2 border-bottom opacity-50 mb-2"><%= "Se connecter" %></p>
           <div class="form-inputs">
             <%= f.input :email,
+                        label: "Adresse email",
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "email" } %>
             <%= f.input :password,
+                        label: "Mot de passe",
                         required: true,
                         input_html: { autocomplete: "current-password" } %>
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <%= f.input :remember_me,label: "Se souvenir de moi", as: :boolean if devise_mapping.rememberable? %>
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Log in",
+            <%= f.button :submit, "Se connecter",
             class:"w-40 btn btn-primary text-light"%>
           </div>
         <% end %>
@@ -25,12 +27,12 @@
       <div class="create d-flex justify-content between mt-3">
         <div>
         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-          <%= link_to "Sign up", new_registration_path(resource_name), class:"btn btn-outline-primary me-4" %><br/>
+          <%= link_to "Créer un compte", new_registration_path(resource_name), class:"btn btn-outline-primary me-4" %><br/>
         <% end %>
         </div>
         <div>
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <%= link_to "Forgot your password?", new_password_path(resource_name), class:"btn btn-outline-primary" %><br/>
+          <%= link_to "Mot de passe oublié?", new_password_path(resource_name), class:"btn btn-outline-primary" %><br/>
         <% end %>
         </div>
       </div>
