@@ -11,12 +11,12 @@ class PlantsController < ApplicationController
 
     # Get temperature and relative air humidity
     @temperature_air_rh = set_temperature_air_rh
-    @temperature_latest = get_latest_data_from(array: @temperature_air_rh, item: 0).round
-    @air_rh_latest = get_latest_data_from(array: @temperature_air_rh, item: 1).round
+    @temperature_latest = get_latest_data_from(array: @temperature_air_rh, item: 0).round if @temperature_air_rh
+    @air_rh_latest = get_latest_data_from(array: @temperature_air_rh, item: 1).round if @temperature_air_rh
 
     # Get relative ground humidity
     @ground_rh = set_ground_rh
-    @ground_rh_latest = @ground_rh.last[1].round
+    @ground_rh_latest = @ground_rh.last[1].round if @ground_rh
 
     # Get latest tank level
     @tank_level_latest = set_latest_tank_level
@@ -60,6 +60,8 @@ class PlantsController < ApplicationController
   end
 
   def set_temperature_air_rh
+    return unless @attached_devices.where(temperature: true).count.nonzero?
+
     temperature = { name: "Température (°C)", data: [] }
     air_rh = { name: "Humidité air (%)", data: [] }
     @attached_devices.where(temperature: true).first.device_metrics.map do |data|
@@ -72,12 +74,16 @@ class PlantsController < ApplicationController
   end
 
   def set_ground_rh
+    return unless @attached_devices.where(ground_rh: true).count.nonzero?
+
     @attached_devices.where(ground_rh: true).first.device_metrics.map do |data|
       [data.created_at, data.ground_rh]
     end
   end
 
   def set_latest_tank_level
+    return unless @attached_devices.where(tank_level: true).count.nonzero?
+
     @attached_devices.where(tank_level: true).first.device_metrics.last.tank_level
   end
 
