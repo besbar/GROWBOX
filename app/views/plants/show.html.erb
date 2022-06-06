@@ -1,7 +1,10 @@
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-12">
+      <div class="d-flex align-items-center justify-content-between">
       <h1 class="mb-3"><%= @plant.family %></h1>
+      <%= link_to edit_plant_path(@plant) do %><button class="btn btn-outline-primary">Modifier</button><% end %>
+      </div>
       <div class="show-plant row">
         <div class="show-plant-about mb-3 col-12 col-lg-4 d-flex flex-column">
           <div class="p-3 main-card border shadow-sm flex-grow-1">
