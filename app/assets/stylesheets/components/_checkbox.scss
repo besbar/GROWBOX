@@ -1,0 +1,26 @@
+.tag-checkbox-group {
+  .form-check {
+    display: inline-block;
+    position: relative;
+    left: -23px;
+    margin-bottom: 10px;
+    &-input {
+      position: absolute;
+      transform: scale(0);
+    }
+    &-input+label {
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+      color: $blue-green;
+      background-color: $white;
+      border: 1px solid $blue-green;
+      transition: color 0.2s, background-color 0.2s;
+    }
+    &-input:checked+label {
+      color: $light;
+      background-color: $blue-green;
+      transition: 0.2s all;
+    }
+  }
+}

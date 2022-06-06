@@ -18,12 +18,12 @@ class PlantsController < ApplicationController
 
     # Get temperature and relative air humidity
     @temperature_air_rh = set_temperature_air_rh
-    @temperature_latest = get_latest_data_from(array: @temperature_air_rh, item: 0).round
-    @air_rh_latest = get_latest_data_from(array: @temperature_air_rh, item: 1).round
+    @temperature_latest = get_latest_data_from(array: @temperature_air_rh, item: 0).round if @temperature_air_rh
+    @air_rh_latest = get_latest_data_from(array: @temperature_air_rh, item: 1).round if @temperature_air_rh
 
     # Get relative ground humidity
     @ground_rh = set_ground_rh
-    @ground_rh_latest = @ground_rh.last[1].round
+    @ground_rh_latest = @ground_rh.last[1].round if @ground_rh
 
     # Get latest tank level
     @tank_level_latest = set_latest_tank_level
@@ -31,6 +31,7 @@ class PlantsController < ApplicationController
 
   def new
     @plant = Plant.new
+    @devices = Device.all
   end
 
   def create
@@ -38,6 +39,7 @@ class PlantsController < ApplicationController
     @plant.user = current_user
     @plant.address = Plant::SITE_NAME_ADDRESS[Plant::SITE_NAME.find_index(plant_params[:site_name])]
     if @plant.save
+      attach_devices
       redirect_to plant_path(@plant)
     else
       render :new, status: :unprocessable_entity
@@ -59,15 +61,24 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
   end
 
+  def attach_devices
+    params[:plant][:device_ids][(1..)].each do |device|
+      PlantDevice.create(plant_id: @plant.id,
+                         device_id: device)
+    end
+  end
+
   def set_attached_devices
     @attached_devices = @plant.devices.empty? ? [] : @plant.devices
   end
 
   def plant_params
-    params.require(:plant).permit(:family, :species, :site_name, :description)
+    params.require(:plant).permit(:family, :species, :site_name, :description, :device_ids)
   end
 
   def set_temperature_air_rh
+    return unless @attached_devices.where(temperature: true).count.nonzero?
+
     temperature = { name: "Température (°C)", data: [] }
     air_rh = { name: "Humidité air (%)", data: [] }
     @attached_devices.where(temperature: true).first.device_metrics.map do |data|
@@ -80,12 +91,16 @@ class PlantsController < ApplicationController
   end
 
   def set_ground_rh
+    return unless @attached_devices.where(ground_rh: true).count.nonzero?
+
     @attached_devices.where(ground_rh: true).first.device_metrics.map do |data|
       [data.created_at, data.ground_rh]
     end
   end
 
   def set_latest_tank_level
+    return unless @attached_devices.where(tank_level: true).count.nonzero?
+
     @attached_devices.where(tank_level: true).first.device_metrics.last.tank_level
   end
 
