@@ -7,7 +7,7 @@ class PlantsController < ApplicationController
     @markers = @plants.geocoded.map do |plant|
       {
         lat: plant.latitude,
-        lng: plant.longitude
+        lng: plant.longitude,
         info_window: render_to_string(partial: "info_window", locals: {plant: plant})
       }
     end
