@@ -7,6 +7,8 @@ class PlantsController < ApplicationController
   end
 
   def show
+    return if @attached_devices.empty?
+
     # Get temperature and relative air humidity
     @temperature_air_rh = set_temperature_air_rh
     @temperature_latest = get_latest_data_from(array: @temperature_air_rh, item: 0).round
@@ -41,7 +43,7 @@ class PlantsController < ApplicationController
   end
 
   def set_attached_devices
-    @attached_devices = @plant.devices
+    @attached_devices = @plant.devices.empty? ? [] : @plant.devices
   end
 
   def plant_params
