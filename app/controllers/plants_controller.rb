@@ -8,7 +8,7 @@ class PlantsController < ApplicationController
   end
 
   def show
-    return if @attached_devices.empty?
+    # return if @attached_devices.empty?
   end
 
   def new
@@ -19,11 +19,14 @@ class PlantsController < ApplicationController
   def create
     @plant = Plant.new(plant_params)
     if @plant.save
-      attach_devices
       redirect_to plant_path(@plant)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @devices = Device.all
   end
 
   def update
@@ -36,7 +39,7 @@ class PlantsController < ApplicationController
     WateringJob.perform_later
     redirect_to plant_path(@plant)
   end
-  
+
   # Charts endpoints for Chartkick live refresh
   def for_temperature_air_rh
     render json: set_temperature_air_rh
@@ -63,15 +66,9 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
   end
 
-  def attach_devices
-    params[:plant][:device_ids][(1..)].each do |device|
-      PlantDevice.create(plant_id: @plant.id,
-                         device_id: device)
-    end
-  end
-
   def set_attached_devices
-    @attached_devices = @plant.devices.empty? ? [] : @plant.devices
+    # @attached_devices = @plant.devices.empty? ? [] : @plant.devices
+    @attached_devices = @plant.devices
   end
 
   def set_metrics
@@ -89,7 +86,7 @@ class PlantsController < ApplicationController
   end
 
   def plant_params
-    params.require(:plant).permit(:family, :species, :site_id, :description, :device_ids)
+    params.require(:plant).permit(:family, :species, :site_id, :description, device_ids: [])
   end
 
   def set_temperature_air_rh

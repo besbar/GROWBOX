@@ -11,14 +11,14 @@
           <%= t.input :species, label:"Espèce"%>
         </div>
         <div class="col-12 col-lg-6">
-          <%= t.input :site_name, label:"Nom de site", collection: Plant::SITE_NAME %>
+          <%= t.association :site, label:"Site", collection: Site.order(:name) %>
         </div>
       </div>
       <div class="tag-checkbox-group">
         <%= t.input :device_ids, label: "Capteur(s) associé(s)", as: :check_boxes, collection: @devices %>
       </div>
       <%= t.input :description, label:"Informations clés" %>
-      <%= t.submit "Créer ma plante", class:"w-40 btn btn-primary text-light fw-semibold fs-5"%>
+      <%= t.submit (@plant.persisted? ? "Modifier ma plante" : "Créer ma plante"), class:"w-40 btn btn-primary text-light fw-semibold fs-5"%>
       <% end %>
       </div>
     </div>
