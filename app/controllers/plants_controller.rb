@@ -1,5 +1,5 @@
 class PlantsController < ApplicationController
-  before_action :set_plant, only: %i[show edit update for_temperature_air_rh for_ground_rh metrics]
+  before_action :set_plant, only: %i[show edit update for_temperature_air_rh for_ground_rh metrics watering]
   before_action :set_attached_devices, only: %i[show for_temperature_air_rh for_ground_rh metrics]
   before_action :set_metrics, only: %i[show metrics]
 
@@ -26,14 +26,17 @@ class PlantsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     @plant.update(plant_params)
     redirect_to plant_path(@plant)
   end
 
+  def watering
+    flash[:alert] = "L'arrosage démarre"
+    WateringJob.perform_later
+    redirect_to plant_path(@plant)
+  end
+  
   # Charts endpoints for Chartkick live refresh
   def for_temperature_air_rh
     render json: set_temperature_air_rh
