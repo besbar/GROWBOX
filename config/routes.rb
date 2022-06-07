@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
+  root to: "pages#home"
+  
   require "sidekiq/web"
   authenticate :user, ->(user) { user.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
   devise_for :users
-
-  root to: "pages#home"
+  
+  resources :sites, only: %i[index show new create]
 
   get "dashboard", to: "pages#dashboard"
 
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
       get :metrics
     end
   end
-
+  
   resources :devices do
     resources :alert_settings, only: %i[index new show create]
   end

@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "nokogiri"
 require 'csv'
@@ -26,6 +19,33 @@ user = User.new(
 )
 user.save
 puts "users created"
+
+#seeds of site
+site_1 = Site.create!(
+  name: "Le Wagon",
+  address: "16 Villa Gaudelet 75011, Paris, France",
+  user: user
+)
+
+site_2 = Site.create!(
+  name: "Jardins de Versailles",
+  address: "Place d'Armes, 78000 Versailles, France",
+  user: user
+)
+
+site_3 = Site.create!(
+  name: "Jardin des Plantes",
+  address: "57 Rue Cuvier, 75005 Paris, France",
+  user: user
+)
+
+site_4 = Site.create!(
+  name: "Jardin du Luxembourg",
+  address: "Le Jardin du Luxembourg",
+  user: user
+)
+
+puts "sites created"
 
 # Seed of devices
 # 22 devices ow some are false (currently not used/active)
@@ -341,10 +361,7 @@ device_22 = Device.create!(
 puts "devices created"
 
 # Seed Plant
-site_name = ["Le Wagon",
-  "Jardins de Versailles",
-  "Jardin des Plantes",
-  "Jardin du Luxembourg"]
+site_id = [site_1.id, site_2.id, site_3.id, site_4.id]
 
 plant_info = [{family: "Zamioculcas Zamiifolia",
 description: "Zamioculcas zamiifolia est une espèce de plantes de la famille des Araceae; c'est l'unique espèce du genre Zamioculcas. Elle est aussi appelée Plante ZZ, des initiales de son nom scientifique. Le zamioculcas est une plante vivace à feuillage persistant."},
@@ -359,29 +376,14 @@ description: "Le genre Aglaonema comprend environ 60 espèces de plantes de la f
 
 plants = []
 
-# plant_info.each do |val|
-#   counter = 0
-#   4.times do
-#     species = "#{val[:family][0..1].upcase}_#{counter}"
-#     plant = Plant.create!(family: val[:family],
-#           species: species,
-#           site_name: site_name.sample,
-#           description: val[:description],
-#           user: user)
-#     counter += 1
-#     plants << plant
-#   end
-# end
-
 4.times do
   counter = 0
   plant_info.each do |val|
     species = "#{val[:family][0..1].upcase}_#{counter}"
     plant = Plant.create!(family: val[:family],
-          species: species,
-          site_name: site_name.sample,
-          description: val[:description],
-          user: user)
+                          species: species,
+                          description: val[:description],
+                          site_id: site_id.sample)
     plants << plant
   end
   counter += 1
@@ -405,7 +407,6 @@ def plant_device_create(plant, device)
   )
 end
 
-puts plants[0]
 plant_device_create(plants[0], device_1)
 plant_device_create(plants[0], device_2)
 plant_device_create(plants[0], device_3)
