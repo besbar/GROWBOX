@@ -4,10 +4,20 @@
     <div>
       <h3 class="main-card-title "><%= device.name %></h3>
       <h3></h3>
-      <h4 class="main-card-price align-self-center"><%= device.category %></h4>
+      <h5 class="opacity-50"><%= device.category %></h5>
     </div>
-    <div>
-        <p class="main-card-detail my-0 me-2"><%= device.status %></p>
+    <div >
+        <% if device.status %>
+          <div class="d-flex text-success">
+            <i class="fa-solid fa-plug pt-1"></i>
+            <p class="ps-2">Relié</p>
+          </div>
+        <% else %>
+          <div class="d-flex text-danger">
+            <i class="fa-solid fa-plug pt-1"></i>
+            <p class="ps-2"> Non relié</p>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

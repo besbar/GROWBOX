@@ -32,7 +32,7 @@ class AlertSettingsController < ApplicationController
   private
 
   def alert_setting_params
-    params.require(:alert_setting).permit(:description, :temperature_min, :temperature_max, :air_rh_min, :air_rh_max, :tank_level_min, :ground_rh_min, :ground_rh_min, :luminosity_min, :luminosity_max)
+    params.require(:alert_setting).permit(:description, :temperature_min, :temperature_max, :air_rh_min, :air_rh_max, :tank_level_min, :ground_rh_min, :ground_rh_max, :luminosity_min, :luminosity_max)
   end
 
   def set_device
