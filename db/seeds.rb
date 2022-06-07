@@ -27,6 +27,33 @@ user = User.new(
 user.save
 puts "users created"
 
+#seeds of site
+site_1 = Site.create!(
+  name: "Le Wagon",
+  address: "16 Villa Gaudelet 75011, Paris, France",
+  user: user
+)
+
+site_2 = Site.create!(
+  name: "Jardins de Versailles",
+  address: "Place d'Armes, 78000 Versailles, France",
+  user: user
+)
+
+site_3 = Site.create!(
+  name: "Jardin des Plantes",
+  address: "57 Rue Cuvier, 75005 Paris, France",
+  user: user
+)
+
+site_4 = Site.create!(
+  name: "Jardin du Luxembourg",
+  address: "Le Jardin du Luxembourg",
+  user: user
+)
+
+puts "sites created"
+
 # Seed of devices
 # 22 devices ow some are false (currently not used/active)
 
@@ -341,10 +368,7 @@ device_22 = Device.create!(
 puts "devices created"
 
 # Seed Plant
-site_name = ["Le Wagon",
-  "Jardins de Versailles",
-  "Jardin des Plantes",
-  "Jardin du Luxembourg"]
+site_id = [1, 2, 3, 4]
 
 plant_info = [{family: "Zamioculcas Zamiifolia",
 description: "Zamioculcas is a genus of flowering plants in the family Araceae, containing the single species Zamioculcas zamiifolia. It is a tropical perennial plant native to eastern Africa, from southern Kenya to northeastern South Africa."},
@@ -364,10 +388,9 @@ plant_info.each do |val|
   4.times do
     species = "#{val[:family][0..1].upcase}_#{counter}"
     plant = Plant.create!(family: val[:family],
-          species: species,
-          site_name: site_name.sample,
-          description: val[:description],
-          user: user)
+                          species: species,
+                          description: val[:description],
+                          site_id: site_id.sample)
     counter += 1
     plants << plant
   end

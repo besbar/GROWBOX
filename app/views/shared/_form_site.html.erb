@@ -1,0 +1,19 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <div class="form shadow-sm px-4 py-3">
+      <%= simple_form_for(@site) do |t| %>
+        <h1 class="fs-3 text-center pb-2 fw-bold"><%= "Mon site" %></h1>
+        <p class="fs-5 text-center pb-2 border-bottom opacity-50 mb-2"><%= "Crée un nouveau site pour mes plantes" %></p>
+        <%= t.input :name, label:"Nom"%>
+        <%= t.input :address, label:"Addresse"%>
+        <% if site.persisted?  %>
+        <%= t.submit "Mettre à jour mon site", class:"w-40 btn btn-primary text-light fw-semibold fs-5"%>
+        <% else %>
+        <%= t.submit "Crée mon site", class:"w-40 btn btn-primary text-light fw-semibold fs-5"%>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<h1>Les sites d'emplacement des plantes</h1>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="d-flex align-items-center justify-content-between">
+        <h1 class="text-primary fs-1 fw-bold text-center mb-4"><%= @sites.length %> Sites sous gestion</h1>
+        <%= link_to new_site_path do%><button class="btn btn-outline-primary">Ajouter un site</button><% end %>
+      </div>
+      <div class="grid">
+        <% @sites.each do |site| %>
+          <%= link_to site_path(site), class: 'text-decoration-none' do %>
+            <%= render 'partial/card_site', site: site %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

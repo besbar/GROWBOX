@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :sites, only: %i[index show new create]
   resources :plants
   resources :devices do
     resources :alert_settings, only: %i[index new show create]

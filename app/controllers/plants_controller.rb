@@ -4,13 +4,6 @@ class PlantsController < ApplicationController
 
   def index
     @plants = Plant.all
-    @markers = @plants.geocoded.map do |plant|
-      {
-        lat: plant.latitude,
-        lng: plant.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {plant: plant})
-      }
-    end
   end
 
   def show
@@ -36,8 +29,6 @@ class PlantsController < ApplicationController
 
   def create
     @plant = Plant.new(plant_params)
-    @plant.user = current_user
-    @plant.address = Plant::SITE_NAME_ADDRESS[Plant::SITE_NAME.find_index(plant_params[:site_name])]
     if @plant.save
       attach_devices
       redirect_to plant_path(@plant)
@@ -51,7 +42,6 @@ class PlantsController < ApplicationController
 
   def update
     @plant.update(plant_params)
-    @plant.update({address: Plant::SITE_NAME_ADDRESS[Plant::SITE_NAME.find_index(plant_params[:site_name])]})
     redirect_to plant_path(@plant)
   end
 
@@ -73,7 +63,7 @@ class PlantsController < ApplicationController
   end
 
   def plant_params
-    params.require(:plant).permit(:family, :species, :site_name, :description, :device_ids)
+    params.require(:plant).permit(:family, :species, :site_id, :description, :device_ids)
   end
 
   def set_temperature_air_rh
