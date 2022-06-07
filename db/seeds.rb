@@ -364,32 +364,40 @@ puts "devices created"
 site_id = [site_1.id, site_2.id, site_3.id, site_4.id]
 
 plant_info = [{family: "Zamioculcas Zamiifolia",
-description: "Zamioculcas is a genus of flowering plants in the family Araceae, containing the single species Zamioculcas zamiifolia. It is a tropical perennial plant native to eastern Africa, from southern Kenya to northeastern South Africa."},
+description: "Zamioculcas zamiifolia est une espèce de plantes de la famille des Araceae; c'est l'unique espèce du genre Zamioculcas. Elle est aussi appelée Plante ZZ, des initiales de son nom scientifique. Le zamioculcas est une plante vivace à feuillage persistant."},
 {family: "Philodendron Scandens",
-description: "Philodendron hederaceum, the heartleaf philodendron (syn. Philodendron scandens) is a species of flowering plant in the family Araceae, native to Central America and the Caribbean."},
+description: "Le Philodendron Scandens est une espèce végétale appartenant à la famille des Aracées originaire des régions tropicales allant du Mexique jusqu'au Vénézuela et aux Caraïbes. Il est souvent cultivé comme plante d'appartement pour sa résistance et sa luxuriance."},
 {family: "Pothos",
-description: "Pothos is a genus of flowering plants in the family Araceae (tribe Potheae). It is native to China, the Indian Subcontinent, Australia, New Guinea, Southeast Asia, and various islands of the Pacific and Indian Oceans."},
+description: "Le Pothos est une plante vivace appartenant à la famille des Aracées comme l'arum ou le philodendron. À l'état sauvage, il se développe grâce aux troncs d'arbres auxquels il agrippe ses racines aériennes."},
 {family: "Monstera",
-description: "Monstera is a genus of 49 species of flowering plants in the arum family, Araceae, native to tropical regions of the Americas."},
+description: "Originaire des forêts tropicales d’Amérique du sud, c’est la plante incontournable de la tendance jungle d’aujourd’hui. C’est une plante grimpante qui a la particularité de développer de longues racines aériennes lui permettant de capter l’humidité  de l’air."},
 {family: "Aglaonema",
-description: "Aglaonema is a genus of flowering plants in the arum family, Araceae. They are native to tropical and subtropical regions of Asia and New Guinea.[1][2] They are known commonly as Chinese evergreens."}]
+description: "Le genre Aglaonema comprend environ 60 espèces de plantes de la famille des aracées, originaires des régions tropicales asiatiques. Les plantes de ce genre sont appréciées pour les motifs décoratifs, parfois multicolores, de leurs feuilles."}]
 
 plants = []
 
-plant_info.each do |val|
+4.times do
   counter = 0
-  4.times do
+  plant_info.each do |val|
     species = "#{val[:family][0..1].upcase}_#{counter}"
     plant = Plant.create!(family: val[:family],
                           species: species,
                           description: val[:description],
                           site_id: site_id.sample)
-    counter += 1
     plants << plant
   end
+  counter += 1
 end
 
 puts "plants created"
+
+# Seed AlterSetting & alerte
+alerte_setting = AlertSetting.create!(
+  description: "Surveillance de l'humidité de la terre de la plante",
+  ground_rh_min: 30,
+  ground_rh_max: 70,
+  sensor: device_1
+)
 
 # Seed PlantDevice
 def plant_device_create(plant, device)
