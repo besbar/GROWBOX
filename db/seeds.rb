@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "nokogiri"
 require 'csv'
@@ -368,7 +361,7 @@ device_22 = Device.create!(
 puts "devices created"
 
 # Seed Plant
-site_id = [1, 2, 3, 4]
+site_id = [site_1.id, site_2.id, site_3.id, site_4.id]
 
 plant_info = [{family: "Zamioculcas Zamiifolia",
 description: "Zamioculcas is a genus of flowering plants in the family Araceae, containing the single species Zamioculcas zamiifolia. It is a tropical perennial plant native to eastern Africa, from southern Kenya to northeastern South Africa."},
@@ -406,7 +399,6 @@ def plant_device_create(plant, device)
   )
 end
 
-puts plants[0]
 plant_device_create(plants[0], device_1)
 plant_device_create(plants[0], device_2)
 plant_device_create(plants[0], device_3)
