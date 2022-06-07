@@ -5,7 +5,7 @@
       <h1 class="mb-3"><%= @plant.family %></h1>
       <%= link_to edit_plant_path(@plant) do %><button class="btn btn-outline-primary">Modifier</button><% end %>
       </div>
-      <div class="show-plant row">
+      <div class="show-plant row" data-controller="refresh-latest" data-refresh-latest-metrics-url-value="<%=metrics_plant_path(@plant)%>">
         <div class="show-plant-about mb-3 col-12 col-lg-4 d-flex flex-column">
           <div class="p-3 main-card border shadow-sm flex-grow-1">
             <h3>À propos</h3>
@@ -47,11 +47,8 @@
             <div class="p-3 mb-3 d-flex flex-column main-card flex-grow-1 border shadow-sm">
               <h3>Environnement</h3>
               <% if @temperature_air_rh %>
-                <div class="show-plant-highlight my-3 d-flex justify-content-around rounded">
-                  <h3 class="my-2 text-primary"><%= @temperature_latest %>°C</h3>
-                  <h3 class="my-2 text-primary"><%= @air_rh_latest %>%</h3>
-                </div>
-                <%= area_chart @temperature_air_rh, colors: ["#097479", "#A2E8E6"] %>
+                <%= render 'temperature_air_rh', temperature_latest: @temperature_latest, air_rh_latest: @air_rh_latest %>
+                <%= line_chart for_temperature_air_rh_plant_path(@plant), refresh: 5, colors: ["#097479", "#A2E8E6"], dataset: {borderWidth: 0.5} %>
               <% else %>
               <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1">
                 <span>Pas de capteur associé</span>
@@ -61,15 +58,7 @@
             <div class="p-3 d-flex flex-column main-card border shadow-sm">
               <h3>Réservoir</h3>
               <% if @tank_level_latest %>
-                <% if @tank_level_latest.nonzero?  %>
-                  <div class="tank tank-full d-flex flex-grow-1 align-items-center justify-content-center">
-                    <span class="p-3 text-center">Le niveau du réservoir semble correct</span>
-                  </div>
-                <% else %>
-                  <div class="tank tank-empty d-flex flex-grow-1 align-items-center justify-content-center">
-                    <span class="p-3 text-center">Vérifiez le niveau du réservoir !</span>
-                  </div>
-                <% end %>
+                <%= render 'tank_level', tank_level_latest: @tank_level_latest %>
               <% else %>
               <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1">
                 <span>Pas de capteur associé</span>
@@ -81,10 +70,8 @@
             <div class="p-3 mb-3 main-card border shadow-sm">
               <h3>Humidité sol</h3>
               <% if @ground_rh %>
-                <div class="show-plant-highlight my-3 d-flex justify-content-center rounded">
-                  <h3 class="my-2 text-primary"><%= @ground_rh_latest %>%</h3>
-                </div>
-                <%= area_chart @ground_rh, suffix:"%", colors: ["#DEA057"] %>
+                <%= render 'ground_rh', ground_rh_latest: @ground_rh_latest %>
+                <%= line_chart for_ground_rh_plant_path(@plant), refresh: 5, suffix:"%", colors: ["#DEA057"], dataset: {borderWidth: 0.5} %>
               <% else %>
               <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1">
                 <span>Pas de capteur associé</span>
