@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       get :for_temperature_air_rh
       get :for_ground_rh
+      get :metrics
     end
   end
 
