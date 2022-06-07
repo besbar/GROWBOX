@@ -1,0 +1,11 @@
+<div data-refresh-latest-target="tankLevel" class="d-flex justify-content-center">
+  <% if tank_level_latest.nonzero?  %>
+    <div class="tank tank-full w-75 d-flex justify-content-center">
+      <span class="p-3 text-center">Le niveau du réservoir semble correct</span>
+    </div>
+  <% else %>
+    <div class="tank tank-empty w-75 d-flex justify-content-center">
+      <span class="p-3 text-center">Vérifiez le niveau du réservoir !</span>
+    </div>
+  <% end %>
+</div>
