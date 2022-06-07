@@ -51,7 +51,7 @@
                   <h3 class="my-2 text-primary"><%= @temperature_latest %>°C</h3>
                   <h3 class="my-2 text-primary"><%= @air_rh_latest %>%</h3>
                 </div>
-                <%= area_chart @temperature_air_rh, colors: ["#097479", "#A2E8E6"] %>
+                  <%= line_chart for_temperature_air_rh_plant_path(@plant), refresh: 5, colors: ["#097479", "#A2E8E6"], dataset: {borderWidth: 0.5} %>
               <% else %>
               <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1">
                 <span>Pas de capteur associé</span>
@@ -84,7 +84,7 @@
                 <div class="show-plant-highlight my-3 d-flex justify-content-center rounded">
                   <h3 class="my-2 text-primary"><%= @ground_rh_latest %>%</h3>
                 </div>
-                <%= area_chart @ground_rh, suffix:"%", colors: ["#DEA057"] %>
+                <%= line_chart for_ground_rh_plant_path(@plant), refresh: 5, suffix:"%", colors: ["#DEA057"], dataset: {borderWidth: 0.5} %>
               <% else %>
               <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1">
                 <span>Pas de capteur associé</span>
