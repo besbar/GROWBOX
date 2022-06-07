@@ -10,6 +10,6 @@ class MqttJob
 
   def perform
     puts "test-mqtt"
-    MqttDataBuilder.call
+    # MqttDataBuilder.call
   end
 end

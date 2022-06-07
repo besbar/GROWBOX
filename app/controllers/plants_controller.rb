@@ -1,5 +1,5 @@
 class PlantsController < ApplicationController
-  before_action :set_plant, only: %i[show edit update]
+  before_action :set_plant, only: %i[show edit update watering]
   before_action :set_attached_devices, only: :show
 
   def index
@@ -46,12 +46,15 @@ class PlantsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     @plant.update(plant_params)
     @plant.update({address: Plant::SITE_NAME_ADDRESS[Plant::SITE_NAME.find_index(plant_params[:site_name])]})
+    redirect_to plant_path(@plant)
+  end
+
+  def watering
+    flash[:alert] = "L'arrosage démarre"
+    WateringJob.perform_later
     redirect_to plant_path(@plant)
   end
 
