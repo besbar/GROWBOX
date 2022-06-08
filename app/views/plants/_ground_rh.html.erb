@@ -3,6 +3,10 @@
     <div class="show-plant-highlight my-3 d-flex justify-content-center rounded" data-refresh-latest-target="groundRH">
       <h3 class="my-2 text-primary"><%= ground_rh_latest %>%</h3>
     </div>
+  <% else %>
+    <div class="show-plant-highlight my-3 d-flex justify-content-center rounded bg-info" data-refresh-latest-target="groundRH">
+      <h3 class="my-2 text-white"><%= ground_rh_latest %>%</h3>
+    </div>
   <% end %>
 <% else %>
     <div class="show-plant-highlight my-3 d-flex justify-content-center rounded bg-info" data-refresh-latest-target="groundRH">
