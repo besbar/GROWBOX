@@ -52,7 +52,7 @@
           <div class="grid">
               <% @plants.each do |plant| %>
               <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
-                <%= render 'partial/card', plant: plant %>
+                <%= render 'partial/card_plant', plant: plant %>
               <% end %>
             <% end %>
           </div>
