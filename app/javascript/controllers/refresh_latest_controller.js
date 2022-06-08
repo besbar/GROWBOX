@@ -5,7 +5,7 @@ export default class extends Controller {
   static values = {metricsUrl: String};
 
   connect() {
-    setInterval(this.#refreshMetrics.bind(this), 5000);
+    setInterval(this.#refreshMetrics.bind(this), 1000);
   }
 
   #refreshMetrics() {
