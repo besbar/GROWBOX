@@ -8,6 +8,7 @@
         <% end %>
       </div>
       <div class="grid">
+        <h3>Rattaché à <%= pluralize(@attached_alerts.count, 'alerte') %></h3>
         <% @plants.each do |plant| %>
           <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
             <%= render 'partial/card_plant', plant: plant %>
