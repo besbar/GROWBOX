@@ -1,20 +1,20 @@
-<h1>Plants</h1>
-
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="d-flex align-items-center justify-content-between">
-        <h1 class="text-primary fs-1 fw-bold text-center mb-4"><%= @plants.length %> plantes sous gestion</h1>
-        <%= link_to new_plant_path do%><button class="btn btn-outline-primary">Ajouter une plante</button><% end %>
+        <h1 class="mb-3"><%= pluralize(@plants.length, 'plante') %></h1>
+        <%= link_to new_plant_path do %>
+          <button class="btn btn-outline-primary">Ajouter une plante</button>
+        <% end %>
       </div>
       <div class="grid">
+        <h3>Rattaché à <%= pluralize(@attached_alerts.count, 'alerte') %></h3>
         <% @plants.each do |plant| %>
           <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
-            <%= render 'partial/card', plant: plant %>
+            <%= render 'partial/card_plant', plant: plant %>
           <% end %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-<br>
