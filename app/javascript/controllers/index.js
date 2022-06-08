@@ -10,8 +10,11 @@ application.register("hello", HelloController)
 import MapController from "./map_controller.js"
 application.register("map", MapController)
 
-import WebcamController from "./webcam_controller.js"
-application.register("webcam", WebcamController)
+import NavbarController from "./navbar_controller.js"
+application.register("navbar", NavbarController)
 
 import RefreshLatestController from "./refresh_latest_controller.js"
 application.register("refresh-latest", RefreshLatestController)
+
+import WebcamController from "./webcam_controller.js"
+application.register("webcam", WebcamController)
