@@ -5,6 +5,7 @@ class SitesController < ApplicationController
 
   def show
     @site = Site.find(params[:id])
+    @plants = Plant.where(site_id: @site)
   end
 
   def new

@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-10">
       <div class="d-flex align-items-center justify-content-between mb-3">
           <div class="d-flex flex-column">
-            <span class= "fs-4 text-primary">Bienvenue <%= current_user.first_name.capitalize %> !</span>
+            <span class= "fs-4 text-primary">Bonjour <%= current_user.first_name.capitalize %></span>
             <div class="d-flex text-secondary align-items-center">
               <i class="fa-solid fa-building me-2"></i>
               <span><%= current_user.company.capitalize %></span>
@@ -12,16 +12,16 @@
         <div>
           <button class=" btn btn-outline-info px-3 px-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ajouter</button>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "Un nouveau site", "/sites/new", class: "dropdown-item text-black" %>
-            <%= link_to "Une nouvelle plante", "/plants/new", class: "dropdown-item text-black" %>
-            <%= link_to "Un nouveau capteur", "/devices/new", class: "dropdown-item text-black" %>
+            <%= link_to "Un nouveau site", new_site_path, class: "dropdown-item text-black" %>
+            <%= link_to "Une nouvelle plante", new_plant_path, class: "dropdown-item text-black" %>
+            <%= link_to "Un nouveau capteur", new_device_path, class: "dropdown-item text-black" %>
           </div>
         </div>
 
       </div>
       <ul class="nav nav-tabs" id="Tab" role="tablist">
         <li class="nav-item">
-          <button class="nav-link active" aria-current="page" id="sites-tab" data-bs-toggle="tab" data-bs-target="#sites" type="button" role="tab" aria-controls="sites" aria-selected="true">Mes emplacements</button>
+          <button class="nav-link active" aria-current="page" id="sites-tab" data-bs-toggle="tab" data-bs-target="#sites" type="button" role="tab" aria-controls="sites" aria-selected="true">Mes sites</button>
         </li>
         <li class="nav-item">
           <button class="nav-link" aria-current="page" id="plants-tab" data-bs-toggle="tab" data-bs-target="#plants" type="button" role="tab" aria-controls="plants" aria-selected="true">Mes plantes</button>
@@ -35,24 +35,18 @@
       </ul>
       <div class="tab-content" id="TabContent">
         <div class="my-3 tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
-          <div class="grid">
-              <% @sites.each do |site| %>
-                <%= link_to site_path(site), class: 'text-decoration-none' do %>
-                  <%= render 'partial/card_site', site: site %>
-              <% end %>
-            <% end %>
-          </div>
           <div style="width: 100%; height: 600px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+            class="rounded shadow-sm">
           </div>
         </div>
-        <div class="my-3 tab-pane fade show active" id="plants" role="tabpanel" aria-labelledby="plants-tab">
+        <div class="my-3 tab-pane fade show" id="plants" role="tabpanel" aria-labelledby="plants-tab">
           <div class="grid">
               <% @plants.each do |plant| %>
               <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
-                <%= render 'partial/card', plant: plant %>
+                <%= render 'partial/card_plant', plant: plant %>
               <% end %>
             <% end %>
           </div>
