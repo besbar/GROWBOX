@@ -1,10 +1,11 @@
-<h1>Devices</h1>
-
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-12">
-      <div>
-        <h1 class="text-primary fs-1 fw-bold text-center mb-4"><%= @devices.length %> capteurs sous gestion</h1>
+      <div class="d-flex align-items-center justify-content-between">
+        <h1 class="mb-3"><%= pluralize(@devices.length, 'capteur') %></h1>
+        <%= link_to new_device_path do %>
+          <button class="btn btn-outline-primary">Ajouter un capteur</button>
+        <% end %>
       </div>
       <div class="grid">
         <% @devices.each do |device| %>
@@ -16,5 +17,3 @@
     </div>
   </div>
 </div>
-<br>
-<%= link_to "Ajouter un capteur", new_device_path%>
