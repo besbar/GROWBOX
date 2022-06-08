@@ -48,7 +48,7 @@
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
         </div>
-        <div class="my-3 tab-pane fade show active" id="plants" role="tabpanel" aria-labelledby="plants-tab">
+        <div class="my-3 tab-pane fade show" id="plants" role="tabpanel" aria-labelledby="plants-tab">
           <div class="grid">
               <% @plants.each do |plant| %>
               <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
