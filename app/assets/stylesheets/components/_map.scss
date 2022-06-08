@@ -3,6 +3,11 @@
 }
 
 .mapboxgl-popup-content {
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
+  .mapboxgl-popup-title {
+    font-family: $headers-font;
+    line-height: 30px;
+    color: $blue-green;
+    text-decoration: none;
+  }
+  font-family: $body-font;
 }

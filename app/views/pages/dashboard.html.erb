@@ -35,17 +35,11 @@
       </ul>
       <div class="tab-content" id="TabContent">
         <div class="my-3 tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
-          <div class="grid">
-              <% @sites.each do |site| %>
-                <%= link_to site_path(site), class: 'text-decoration-none' do %>
-                  <%= render 'partial/card_site', site: site %>
-              <% end %>
-            <% end %>
-          </div>
           <div style="width: 100%; height: 600px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+            class="rounded shadow-sm">
           </div>
         </div>
         <div class="my-3 tab-pane fade show" id="plants" role="tabpanel" aria-labelledby="plants-tab">

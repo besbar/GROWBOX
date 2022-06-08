@@ -1,3 +1,15 @@
-<h3><%= site.name %></h3>
-<h4><%= site.plants.count %> plantes</h4>
-<h4><%= site.address %> plantes</h4>
+<p class="fs-3 mapboxgl-popup-title mb-3"><%= site.name %></p>
+<div class="d-flex align-items-center mb-2">
+  <i class="fa-solid fa-lg fa-leaf opacity-50 me-2"></i>
+  <p class="fs-6 mb-0"> <%= pluralize(site.plants.count, 'plante') %></p>
+</div>
+<div class="d-flex align-items-center mb-2">
+  <i class="fa-solid fa-lg fa-location-dot opacity-50 me-2"></i>
+  <p class="fs-6 mb-0"><%= site.address %></p>
+</div>
+<div class="d-flex justify-content-end">
+  <%= link_to site_path(site), class:"btn btn-outline-primary mt-3" do %>
+    <span>Détail</span>
+    <i class="fa-solid fa-chevron-right me-2"></i>
+  <% end %>
+</div>
