@@ -11,6 +11,6 @@
   - active_storage_purge
 :schedule:
   mqtt_job:
-    every: '2s'
+    every: '<%= ENV.fetch("MQTT_REFRESH_PERIOD", "5s") %>'
     #cron: '0 * * * * *'   # Runs once per minute
     class: MqttJob
