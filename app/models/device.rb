@@ -1,6 +1,6 @@
 class Device < ApplicationRecord
   CATEGORY = ["capteur", "actionneur", "caméra"]
-  SUBCATEGORY = ["capteur", "environnement", "humidité sol", "débitmètre", "luminosité", "réservoir", "arrosage", "caméra"]
+  SUBCATEGORY = ["environnement", "humidité sol", "débitmètre", "luminosité", "réservoir", "arrosage", "caméra"]
 
   belongs_to :user
   has_many :device_metrics
