@@ -2,22 +2,18 @@
   <div class="main-card-photo" style="background-image: url(<%= image_path("devices/#{device.name.chop.chop.chop.parameterize}.png") %>)"></div>
   <div class="main-card-info p-3">
     <div>
-      <h3 class="main-card-title "><%= device.name %></h3>
-      <h3></h3>
-      <h5 class="opacity-50"><%= device.category %></h5>
+      <h3 class="main-card-title"><%= device.name.capitalize %> <small class="opacity-50">(<%= device.category %>)</small> </h3>
     </div>
-    <div >
-        <% if device.status %>
-          <div class="d-flex text-success">
-            <i class="fa-solid fa-plug pt-1"></i>
-            <p class="ps-2">Relié</p>
-          </div>
-        <% else %>
-          <div class="d-flex text-danger">
-            <i class="fa-solid fa-plug pt-1"></i>
-            <p class="ps-2"> Non relié</p>
-          </div>
-        <% end %>
-    </div>
+      <% if device.status %>
+        <div class="d-flex text-success">
+          <i class="fa-solid fa-plug-circle-check pt-1"></i>
+          <p class="mb-0 ps-2">Relié</p>
+        </div>
+      <% else %>
+        <div class="d-flex text-danger">
+          <i class="fa-solid fa-plug-circle-xmark pt-1"></i>
+          <p class="mb-0 ps-2"> Non relié</p>
+        </div>
+      <% end %>
   </div>
 </div>
