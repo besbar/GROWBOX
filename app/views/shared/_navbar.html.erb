@@ -1,17 +1,11 @@
-<div class="navbar navbar-expand-sm navbar-lewagon <%= class_names("navbar-lewagon-blue" => action_name != "home") %><%= action_name == "home" ? ' fixed-top' : ' sticky-top' %>"
-<% if action_name == "home" %>
-  data-controller="navbar"
-  data-action="scroll@window->navbar#updateNavbar"
-<% end %> >
+<div class="navbar navbar-expand-sm navbar-growbox <%= class_names("navbar-growbox-blue" => action_name != "home") %><%= action_name == "home" ? ' fixed-top' : ' sticky-top' %>"
+  <% if action_name == "home" %>
+    data-controller="navbar"
+    data-action="scroll@window->navbar#updateNavbar"
+  <% end %> >
   <div class="container-fluid">
-    <% if user_signed_in? %>
-      <%= link_to dashboard_path, class: "navbar-brand" do %>
-      <p class="logo fw-bolder mb-0">MYGROWBOX</p>
-      <% end %>
-    <% else %>
-      <%= link_to "/", class: "navbar-brand" do %>
-        <p class="logo fw-bolder mb-0">MYGROWBOX</p>
-      <% end %>
+    <%= link_to (user_signed_in? ? dashboard_path : "/"), class: "navbar-brand" do %>
+    <p class="logo fw-bolder mb-0">MYGROWBOX</p>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

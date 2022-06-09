@@ -1,8 +1,15 @@
 <div class="main-card border shadow-sm">
-  <div class="main-card-info p-3">
-    <div class ="d-flex flex-column">
-      <h3 class="main-card-title"><%= site.address %></h3>
-      <i class="fa-solid fa-location-dot me-2"></i>
+  <div class="main-card-info">
+    <h3 class="mb-0 main-card-title card-header"><%= site.name %></h3>
+    <div class="p-3">
+      <div class="d-flex align-items-center opacity-50">
+        <i class="fa-solid fa-leaf me-2"></i>
+        <small class="main-card-location align-self-center"><%= pluralize(site.plants.count, "plante") %></small>
+      </div>
+      <div class="d-flex align-items-center opacity-50">
+        <i class="fa-solid fa-location-dot me-2"></i>
+        <small class="main-card-location align-self-center"><%= site.address %></small>
+      </div>
     </div>
   </div>
 </div>
