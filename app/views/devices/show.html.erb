@@ -46,10 +46,6 @@
                 </div>
               <%end %>
             </div>
-            <%= link_to new_plant_path, class:"mt-3 btn btn-primary" do %>
-              <i class="fa-solid fa-plus me-2"></i>
-              <span>Nouvelle plante</span>
-            <% end %>
           </div>
           <div class="p-3 main-card border shadow-sm">
             <h3>Rattaché à <%= pluralize(@attached_alerts.count, 'alerte') %></h3>
