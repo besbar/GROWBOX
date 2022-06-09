@@ -1,10 +1,13 @@
-<div class="image home-banner" style="background-image:url('https://images.unsplash.com/photo-1538506392157-218c11f95129?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2748&q=80');">
-  <div class="text-primary">
-  <h1 class="ms-5 fs-1"> Vos <strong>plantes</strong> comme vous ne les avez <br><strong>jamais vues</strong>. </h1>
+<div class="image home-banner " style="background-image:url('https://images.unsplash.com/photo-1538506392157-218c11f95129?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2748&q=80');">
+  <div class="text-primary ms-5">
+    <h1 class=" fs-1"> Vos <strong>plantes</strong> comme vous ne les avez <br><strong>jamais vues</strong>. </h1>
+    <p class="fs-3 fw-bold my-4">Une technologie innovante au service de vos plantes</p>
+  </div>
+  <div class="d-flex ms-5 mt-5">
+      <%= link_to "Accéder à mon tableau de bord", dashboard_path, class: "btn btn-lg btn-info nav-link text-light py-2 px-3 fw-bold fs-5" %>
   </div>
 </div>
-<div class="container my-3">
-  <h1 class="text-primary fs-1 fw-bold text-center my-5">Une technologie innovante au service de vos plantes</h1>
+<div class="container my-5">
     <div class="image home-illustration rounded" style="background-image: url('https://images.unsplash.com/photo-1604762512526-b7ce049b5764?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80')">
     <div class="row">
       <div class="col-lg-6">
@@ -17,8 +20,7 @@
     </div>
   </div>
   <div class="text-center">
-    <button class="btn btn-primary mt-5 mb-3 px-1 py-1 w-50"></button>
-    <h1 class="text-primary fs-1 fw-bold text-center ">Notre solution?</h1>
+    <h1 class="text-primary fs-1 fw-bold text-center mt-3 ">Notre solution ?</h1>
     <div class=" text-center p-3 my-2">
       <h1 class="text-primary fs-2 my-3">Une plateforme<strong> intuitive</strong></h1>
       <img src="<%= image_path "illustrations/show.png"%>" alt="" class="img">

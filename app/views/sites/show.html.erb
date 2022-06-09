@@ -1,15 +1,30 @@
+<% content_for :meta_title, "MYGROWBOX - #{@site.name}" %>
+
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="d-flex align-items-center justify-content-between">
-      <h1 class="mb-3"><%= @site.name.capitalize %></h1>
-      <%= link_to dashboard_path do%><button class="btn btn-outline-primary">Revenir au dashboard</button><% end %>
+        <h1 class="mb-3"><%= @site.name %></h1>
+        <%= link_to dashboard_path do %>
+          <button class="btn btn-outline-primary">Revenir au dashboard</button>
+        <% end %>
       </div>
-      <div class="show-device row">
-        <div class="show-device-about mb-3 col-12 col-lg-4 d-flex flex-column">
+      <div class="row">
+        <div class="mb-3 col-12 col-lg-4 d-flex flex-column">
           <div class="p-3 main-card border shadow-sm flex-grow-1">
             <h3>À propos</h3>
             <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-pen me-2"></i>
+                <span>Nom</span>
+              </div>
+              <p><%= @site.name %></p>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-1 opacity-50">
+                <i class="fa-solid fa-location-dot me-2"></i>
+                <span>Adresse</span>
+              </div>
               <p><%= @site.address %></p>
             </div>
             <div class="mb-3">
@@ -18,6 +33,22 @@
                 <span>Date d'ouverture</span>
               </div>
               <p><%= @site.created_at.strftime("%d/%m/%Y à %H:%M") %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="p-3 mb-3 main-card border shadow-sm flex-grow-1">
+            <h3><%= pluralize(@plants.count, 'plante') %></h3>
+            <div class="row">
+              <% @plants.each do |plant| %>
+                <div class="col-12 col-lg-6">
+                  <div class="my-2">
+                    <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
+                      <%= render 'partial/card_plant_light', plant: plant %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ DeviceMetric.destroy_all
 PlantDevice.destroy_all
 Device.destroy_all
 Plant.destroy_all
+Site.destroy_all
 User.destroy_all
 
 #Create one user
@@ -376,8 +377,8 @@ description: "Le genre Aglaonema comprend environ 60 espèces de plantes de la f
 
 plants = []
 
+counter = 0
 4.times do
-  counter = 0
   plant_info.each do |val|
     species = "#{val[:family][0..1].upcase}_#{counter}"
     plant = Plant.create!(family: val[:family],
@@ -393,10 +394,31 @@ puts "plants created"
 
 # Seed AlterSetting & alerte
 alerte_setting = AlertSetting.create!(
-  description: "Surveillance de l'humidité de la terre de la plante",
+  description: "Surveillance de l'humidité de la terre",
   ground_rh_min: 30,
   ground_rh_max: 70,
-  sensor: device_1
+  sensor: device_2
+)
+
+alerte_setting_2 = AlertSetting.create!(
+  description: "Surveillance de la température extérieure",
+  temperature_min: 10,
+  temperature_max: 30,
+  sensor: device_6
+)
+
+alerte_setting_3 = AlertSetting.create!(
+  description: "Surveillance de l'humidité de l'air",
+  air_rh_min: 40,
+  air_rh_max: 60,
+  sensor: device_11
+)
+
+alerte_setting_4 = AlertSetting.create!(
+  description: "Surveillance de la luminosité",
+  luminosity_min: 2000,
+  luminosity_max: 5000,
+  sensor: device_10
 )
 
 # Seed PlantDevice

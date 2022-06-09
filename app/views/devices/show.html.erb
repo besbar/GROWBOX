@@ -1,3 +1,5 @@
+<% content_for :meta_title, "MYGROWBOX - #{@device.name.capitalize}" %>
+
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-12">
@@ -6,7 +8,7 @@
         <div class="show-device-about mb-3 col-12 col-lg-4 d-flex flex-column">
           <div class="p-3 main-card border shadow-sm flex-grow-1">
             <h3>À propos</h3>
-            <div class="photo my-3 rounded" style="background-image: url(<%= image_path("devices/#{@device.name.chop.chop.chop.parameterize}.png") %>)"></div>
+            <div class="photo my-3 rounded shadow-sm" style="background-image: url(<%= image_path("devices/#{@device.name.chop.chop.chop.parameterize}.png") %>)"></div>
             <div class="mb-3">
               <div class="d-flex align-items-center mb-1 opacity-50">
                 <i class="fa-solid fa-globe me-2"></i>
@@ -36,9 +38,11 @@
             <div class="row">
               <% @attached_plants.each do |plant| %>
                 <div class="col-12 col-lg-6">
-                  <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
-                    <%= render 'partial/card', plant: plant %>
-                  <% end %>
+                  <div class="my-2">
+                    <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
+                      <%= render 'partial/card_plant_light', plant: plant %>
+                    <% end %>
+                  </div>
                 </div>
               <%end %>
             </div>

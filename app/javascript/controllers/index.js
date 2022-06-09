@@ -10,6 +10,9 @@ application.register("hello", HelloController)
 import MapController from "./map_controller.js"
 application.register("map", MapController)
 
+import NavbarController from "./navbar_controller.js"
+application.register("navbar", NavbarController)
+
 import RefreshLatestController from "./refresh_latest_controller.js"
 application.register("refresh-latest", RefreshLatestController)
 

@@ -16,10 +16,10 @@ class MqttPlugFour
 
   def initialize
     @client = {
-      host: '10.20.1.137',
+      host: ENV.fetch('MQTT_HOST'),
       #:host => 'test.mosquitto.org',
       #:host => '192.168.1.105',
-      port: 1883,
+      port: ENV.fetch('MQTT_PORT').to_i,
       username: "jb",
       password: "growbox"
     }

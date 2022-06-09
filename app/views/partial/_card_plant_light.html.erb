@@ -1,12 +1,11 @@
-<div class="main-card border shadow-sm">
+<div class="main-card shadow-sm">
   <div class="main-card-photo" style="background-image: url(<%= image_path("plants/#{plant.family.parameterize}.png") %>)"></div>
   <div class="main-card-info p-3">
     <div class ="d-flex flex-column">
-      <h3 class="main-card-title"><%= plant.family %></h3>
-      <p class="text-primary fw-semibold"><%= plant.species %></p>
+      <p class="main-card-title text-primary fw-semibold mb-1"><%= plant.family %> <small class="opacity-50">(<%= plant.species %>)</small></p>
       <div class="d-flex align-items-center opacity-50">
         <i class="fa-solid fa-location-dot me-2"></i>
-        <span class="main-card-location align-self-center"><%= plant.site.name %></span>
+        <small class="main-card-location align-self-center"><%= plant.site.name %></small>
       </div>
     </div>
   </div>
