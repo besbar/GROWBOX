@@ -4,6 +4,7 @@ class PlantsController < ApplicationController
   before_action :set_metrics, only: %i[show metrics]
 
   def index
+    @sites = Site.all
     @plants = Plant.all
   end
 
