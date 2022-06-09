@@ -400,6 +400,27 @@ alerte_setting = AlertSetting.create!(
   sensor: device_2
 )
 
+alerte_setting_2 = AlertSetting.create!(
+  description: "Surveillance de la température extérieure",
+  temperature_min: 10,
+  temperature_max: 30,
+  sensor: device_6
+)
+
+alerte_setting_3 = AlertSetting.create!(
+  description: "Surveillance de l'humidité de l'air",
+  air_rh_min: 40,
+  air_rh_max: 60,
+  sensor: device_11
+)
+
+alerte_setting_4 = AlertSetting.create!(
+  description: "Surveillance de la luminosité",
+  luminosity_min: 2000,
+  luminosity_max: 5000,
+  sensor: device_10
+)
+
 # Seed PlantDevice
 def plant_device_create(plant, device)
   PlantDevice.create!(
