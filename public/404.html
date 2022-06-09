@@ -11,7 +11,7 @@
       font-family: "Poppins", "Helvetica", "sans-serif";
       color: #097479;
     }
-    p, a {
+    p, a, span {
       margin: 0;
       font-family: "Roboto", "Helvetica", "sans-serif";
     }
@@ -35,6 +35,12 @@
       align-items: center;
       text-align: center;
       min-width: 75vw;
+    }
+    .dialog-error-type {
+      padding: 10px;
+      border-radius: 8px;
+      color: #FFA585;
+      background-color: rgba(255, 165, 133, 0.15);
     }
     .button {
       display: inline-block;
@@ -60,6 +66,7 @@
     <img src="error.png" class="dialog-image" alt="error image">
     <div class="dialog-message">
       <div class="container">
+        <span class="dialog-error-type">Erreur 404</span>
         <h1>Oops ! Cette page n'existe pas</h1>
         <p>L'objet que vous recherchez n'existe pas ou a été déplacé.</p>
       </div>
