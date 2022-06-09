@@ -6,40 +6,50 @@
         <h1 class="fs-3 text-center pb-2 fw-bold">Mon alerte</h1>
         <p class="fs-5 text-center pb-2 border-bottom opacity-50 mb-2"><%= alert_setting.persisted? ? "Mettre à jour mon alerte" : "Créer une nouvelle alerte" %></p>
         <%= t.input :description, required: true %>
-        <div class="row ">
-          <div class="col-12 col-lg-6">
-            <%= t.input :temperature_min if device.temperature %>
+        <% if device.temperature %>
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <%= t.input :temperature_min, label:"Température min (°C)" %>
+            </div>
+            <div class="col-12 col-lg-6">
+              <%= t.input :temperature_max, label:"Température min (°C)" %>
+            </div>
           </div>
-          <div class="col-12 col-lg-6">
-            <%= t.input :temperature_max if device.temperature %>
+        <% end %>
+        <% if device.air_rh %>
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <%= t.input :air_rh_min, label:"Humidité air min (%)" %>
+            </div>
+            <div class="col-12 col-lg-6">
+              <%= t.input :air_rh_max, label:"Humidité air max (%)" %>
+            </div>
           </div>
-        </div>
-        <div class="row ">
-          <div class="col-12 col-lg-6">
-            <%= t.input :air_rh_min if device.air_rh %>
+        <% end %>
+        <% if device.tank_level %>
+          <%= t.input :tank_level_min, label:"Niveau du réservoir (L)" %>
+        <% end %>
+        <% if device.ground_rh %>
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <%= t.input :ground_rh_min, label:"Humidité sol (%)" %>
+            </div>
+            <div class="col-12 col-lg-6">
+              <%= t.input :ground_rh_max, label:"Humidité sol (%)" %>
+            </div>
           </div>
-          <div class="col-12 col-lg-6">
-            <%= t.input :air_rh_max if device.air_rh %>
+        <% end %>
+        <% if device.luminosity %>
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <%= t.input :luminosity_min, label:"Luminosité min (lumens)" %>
+            </div>
+            <div class="col-12 col-lg-6">
+              <%= t.input :luminosity_max, label:"Luminosité max (lumens)" %>
+            </div>
           </div>
-        </div>
-        <%= t.input :tank_level_min if device.tank_level %>
-        <div class="row">
-          <div class="col-12 col-lg-6">
-            <%= t.input :ground_rh_min if device.ground_rh %>
-          </div>
-          <div class="col-12 col-lg-6">
-            <%= t.input :ground_rh_max if device.ground_rh %>
-          </div>
-        </div>
-        <div class="row ">
-          <div class="col-12 col-lg-6">
-            <%= t.input :luminosity_min if device.luminosity %>
-          </div>
-          <div class="col-12 col-lg-6">
-            <%= t.input :luminosity_max if device.luminosity %>
-          </div>
-        </div>
-          <%= t.submit (alert_setting.persisted? ? "Mettre à jour mon alerte" : "Créer ma nouvelle alerte"), class:"w-40 btn btn-primary text-light fw-semibold fs-5" %>
+        <% end %>
+        <%= t.submit (alert_setting.persisted? ? "Mettre à jour mon alerte" : "Créer ma nouvelle alerte"), class:"w-40 btn btn-primary text-light fw-semibold fs-5" %>
         </div>
       <% end %>
     </div>
