@@ -1,6 +1,6 @@
 <div class="main-card main-card-height border shadow-sm">
   <div class="main-card-info">
-    <h3 class="main-card-title card-header"><%= alert_setting.sensor.name %></h3>
+    <h3 class="main-card-title card-header mb-0"><%= alert_setting.sensor.name %></h3>
     <div class="d-flex justify-content-center text-center opacity-50">
       <div class="d-flex flex-column align-items-center">
         <div class="py-2">
@@ -29,21 +29,31 @@
         </div>
         <div class="d-flex align-items-center">
           <div class="pe-2">
-            <% if alert_setting.ground_rh_min %>
-              <i class="fa-solid fa-droplet"></i>
+            <% if alert_setting.ground_rh_min || alert_setting.ground_rh_max %>
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-droplet me-3"></i>
+                <div>
+                  <p class="mb-0 text-start fw-bolder">Humidité sol</p>
+                  <%= "min: #{alert_setting.ground_rh_min} % - " if alert_setting.ground_rh_min %>
+                  <%= "max: #{alert_setting.ground_rh_max} %" if alert_setting.ground_rh_max %>
+                </div>
+              </div>
             <% end %>
           </div>
-          <%= "Humidité du sol min: #{alert_setting.ground_rh_min} % - " if alert_setting.ground_rh_min %>
-          <%= "max: #{alert_setting.ground_rh_max} %" if alert_setting.ground_rh_max %>
         </div>
         <div class="d-flex align-items-center">
           <div class="pe-2">
-            <% if alert_setting.luminosity_min %>
-              <i class="fa-regular fa-lightbulb"></i>
+            <% if alert_setting.luminosity_min || alert_setting.luminosity_max %>
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-lightbuld me-3"></i>
+                <div>
+                  <p class="mb-0 text-start fw-bolder">Luminosité</p>
+                  <%= "min: #{alert_setting.ground_rh_min} lumens" if alert_setting.luminosity_min %>
+                  <%= "max: #{alert_setting.ground_rh_max} lumens" if alert_setting.luminosity_max %>
+                </div>
+              </div>
             <% end %>
           </div>
-          <%= "Luminosité min: #{alert_setting.luminosity_min} - " if alert_setting.luminosity_min %>
-          <%= "max: #{alert_setting.luminosity_max} lumens" if alert_setting.luminosity_max %>
         </div>
       </div>
     </div>
