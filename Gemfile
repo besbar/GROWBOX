@@ -65,6 +65,7 @@ gem "sidekiq"
 gem "sidekiq-failures", "~> 1.0"
 gem "redis", "~> 4.2.0"
 gem 'sidekiq-scheduler'
+gem 'gretel'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -35,7 +35,9 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-
+    <div class="text-primary">
+      <%= breadcrumbs %>
+    </div>
     <%= yield %>
   </body>
 </html>
