@@ -15,7 +15,8 @@ class PagesController < ApplicationController
       {
         lat: site.latitude,
         lng: site.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {site: site})
+        info_window: render_to_string(partial: "info_window", locals: {site: site}),
+        image_url: helpers.asset_url("Shitty_plant.png")
       }
     end
 
