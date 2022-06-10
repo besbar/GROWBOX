@@ -2,7 +2,16 @@
   color: white;
 }
 
-
-#bottom-button:hover {
-  color: #F4A384;
+.btn-lighter {
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 8px;
+  transition: color 0.15s, background-color 0.15s;
+  &:hover {
+    color: $salmon;
+    background-color: white;
+    transition: color 0.15s, background-color 0.15s;
+  }
 }
