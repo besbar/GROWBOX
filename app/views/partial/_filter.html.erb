@@ -1,10 +1,12 @@
-<div class="my-3 mb-3">
-  <%= form_tag dashboard_path, method: :get, class: "d-flex" do %>
+<div class="d-flex my-3 justify-content-start">
+  <div class="d-flex py-2">
+    <%= form_tag dashboard_path, method: :get, class: " d-flex justify-content-between" do %>
 
-    <%= select_tag :site_name, options_from_collection_for_select(@sites, "name", "name", ""),
-    {include_blank: "Emplacement", class: "btn btn-outline-primary" }%>
-    <%= select_tag :family, options_for_select(@plants.map {|plant| plant.family}.uniq),
-    {include_blank: "Famille", class: "btn btn-outline-primary ms-2"}%>
-    <%= submit_tag "Search", class: "btn btn-primary text-light ms-2" %>
-  <% end %>
+      <%= select_tag :site_name, options_from_collection_for_select(@sites, "name", "name", ""),
+      {include_blank: "Emplacement", class: "form-select me-2 text-center rounded border-primary text-primary" }%>
+      <%= select_tag :family, options_for_select(@plants.map {|plant| plant.family}.uniq),
+      {include_blank: "Famille", class: "form-select mx-2 text-center rounded border-primary text-primary"}%>
+      <%= submit_tag "Filtrer", class: "btn btn-primary text-light px-3 mx-2" %>
+    <% end %>
+  </div>
 </div>
