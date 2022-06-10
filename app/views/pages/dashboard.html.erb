@@ -61,8 +61,8 @@
             class="rounded shadow-sm">
           </div>
         </div>
-        <%= render "/partial/filter"%>
         <div class="my-3 tab-pane fade show <%= 'active' if @search %>" id="plants" role="tabpanel" aria-labelledby="plants-tab">
+          <%= render "/partial/filter"%>
           <div class="grid">
               <% @plants3.each do |plant| %>
               <%= link_to plant_path(plant), class: 'text-decoration-none' do %>
