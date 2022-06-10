@@ -7,9 +7,9 @@ export default class extends Controller {
 
   updateNavbar() {
     if (window.scrollY >= 160) {
-      this.element.classList.add("navbar-lewagon-blue")
+      this.element.classList.add("navbar-growbox-blue")
     } else {
-      this.element.classList.remove("navbar-lewagon-blue")
+      this.element.classList.remove("navbar-growbox-blue")
     }
   }
 }
