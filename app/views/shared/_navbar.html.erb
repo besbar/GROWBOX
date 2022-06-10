@@ -20,7 +20,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to dashboard_path, class: "dropdown-item text-black" do %>
                 <div class="d-flex justify-content-between align-items-center">
-                  <span>Mon dashboard</span>
+                  <span>Mon tableau de bord</span>
                   <i class="fa-solid fa-user ms-3 opacity-50"></i>
                 </div>
               <% end %>
@@ -35,7 +35,7 @@
         <% else %>
           <% unless current_page?(controller: "devise/sessions", action: "new") %>
             <li class="nav-item">
-              <%= link_to "Accéder à mon dashboard", new_user_session_path, class: "btn btn-info nav-link text-light py-1 mx-2 px-3" %>
+              <%= link_to "Accéder à mon tableau de bord", new_user_session_path, class: "btn btn-info nav-link text-light py-1 mx-2 px-2" %>
             </li>
           <% end %>
         <% end %>
