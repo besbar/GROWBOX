@@ -1,28 +1,50 @@
 crumb :root do
-  link "Home", root_path
+  link "Accueil", "/dashboard"
 end
 
-# crumb :projects do
-#   link "Projects", projects_path
-# end
+crumb :plants do
+  link "Mes plantes", plants_path
+end
 
-# crumb :project do |project|
-#   link project.name, project_path(project)
-#   parent :projects
-# end
+crumb :plant do |plant|
+  link plant.family, plant_path(plant)
+  parent :plants
+end
 
-# crumb :project_issues do |project|
-#   link "Issues", project_issues_path(project)
-#   parent :project, project
-# end
+crumb :new_plant do |plant|
+  link "Ajouter", new_plant_path(plant)
+  parent :plants
+end
 
-# crumb :issue do |issue|
-#   link issue.title, issue_path(issue)
-#   parent :project_issues, issue.project
-# end
+crumb :edit_plant do |plant|
+  link "Modifier", edit_plant_path(plant)
+  parent :plant, plant
+end
 
-# If you want to split your breadcrumbs configuration over multiple files, you
-# can create a folder named `config/breadcrumbs` and put your configuration
-# files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that
-# folder are loaded and reloaded automatically when you change them, just like
-# this file (`config/breadcrumbs.rb`).
+crumb :devices do
+  link "Mes capteurs", devices_path
+end
+
+crumb :device do |device|
+  link device.name, device_path(device)
+  parent :devices
+end
+
+crumb :new_device do |device|
+  link "Ajouter", new_device_path(device)
+  parent :devices
+end
+
+crumb :sites do
+  link "Mes sites", sites_path
+end
+
+crumb :site do |site|
+  link site.name, site_path(site)
+  parent :sites
+end
+
+crumb :new_site do |site|
+  link "Ajouter", new_site_path(site)
+  parent :sites
+end
