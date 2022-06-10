@@ -115,7 +115,10 @@ class PlantsController < ApplicationController
   def set_latest_tank_level
     return unless @attached_devices.where(tank_level: true).count.nonzero?
 
-    @attached_devices.where(tank_level: true).first.device_metrics.last.tank_level
+    last_device_metric = @attached_devices.where(tank_level: true).first.device_metrics.last
+    return unless last_device_metric
+
+    last_device_metric.tank_level
   end
 
   def latest_non_nil_from(args = {})
